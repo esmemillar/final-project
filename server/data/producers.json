@@ -1,0 +1,45 @@
+[
+    {
+      "name": "Alive Bouvot",
+      "_id": 811,
+      "imageSrc": "",
+      "producer": "Octavin", 
+      "region": "Jura",
+      "bio": "Alice Bouvot is the proud proprietor of 5 hectares of vines in the Arbois region of the Jura. Alice started her domaine in 2005 with just 2 hectares and over the years have bought small plots and slowly increased their production. Some of our favorite winery visits are with Alice and her adorable sons. On top of her warmth, the vineyards are equally as vibrant. LOctavin is now Demeter biodynamic certified and she works to convey this message to the fullest. Wild grasses, weeds, insects, and animals all have a place in their vines creating a true ecosystem that gives a deeper meaning to each glass of her wine. Since 2009 all LOctavin wines are pur jus, with no additives whatsoever. The grapes are destemmed by hand and fermented without the use of SO2, cultured yeasts, or other additives. Most of the wines are fermented and aged in fiber glass or steel tanks, but only at the ambient temperature of the cave. Most of LOctavin wines are made to reflect single plot expression. The Don Giovanni, for instance, is from a very old plot of Pinot Noir with some old Chardonnay vines as well, so the two grapes come together in the cuvée."
+    }, 
+    {
+    "name": "Rori and Cinzia", 
+    "_id": 812,
+    "bio": "SRC is a small family operation started in 2013 with five wines  from about 17 hectares of Contrada (sites) between Solicchiata and Randazzo  on the northern slopes of Mt. Etna in Sicily. The name comes from the first  initials of owners Rori and Cinzia, and their daughter Sandra. As a double  meaning, when you say the words SRC together, it sounds like the Italian  phrase 'essence' meaning: 'We are here.' The high elevation and steep slopes of  Etna are full of tiny plots of terraced vines, fueled by fresh and rejuvenated  volcanic soils that create truly one-of-a-kind grapes. The estate vines are in 5  distinct districts: Crasà, Calderara, Rivaggi, Barbabecchi, and Pirao; all of which  offer a unique quality to these biodynamically farmed indigenous varieties, with  management of wild herbs and the help of local sheep. In the cellar, natural and  slow fermentations, minimal intervention, large old barrels, and no sulfur use,  create a small range of inspiring and delicious Etna wine.", 
+    "producer": "SRC VINI", 
+    "region": "Etna"
+    }, 
+    {
+      "name": "Joe Swick", 
+      "_id": 813,
+      "bio": "A native of Oregon, Joe returned to his home state in 2013 after a decade of working harvests and making wine across the globe. Joe’s ethos is rooted in showcasing the unique cold climate terroirs of the Pacific Northwest using a hands off approach. Swick partners exclusively with organic and biodynamic growers to develop wines that he himself would like to drink -- fresh, lively acidity, with no conventional additives, only adding modest amounts of SO2 on select wines when absolutely necessary. Swick Wines integrate themselves into a movement looking to rewrite the history of West Coast winemaking. Joe uses a number of minimal intervention techniques from experimentation in skin-contact to field blends to Pét-Nats. Swick works with historically farmed regional varieties such as Pinot Noir, Chenin Blanc and Grenache and experiments with non-native grapes such as Verdelho, Melon de Bourgogne and Touriga Nacional. What ends up in the glass are energetic, vins de soif with a freshness and balanced acidity that reflect their artist, terroir, and space in time -- each year bringing new wines and a new approach. You never know what surprises you might find with Swick.", 
+      "producer": "Swick", 
+      "region": "Oregon"
+    }, 
+    {
+      "name": "Antoine Arraou",
+      "_id": 814,
+      "bio": "Ex photographer turned winemaker - certified biodynamic vineyard", 
+      "producer": "Chateau Lafitte", 
+      "region":  "Sud Ouest"
+    }, 
+    {
+      "name": "Lieux Communs",
+      "_id": 815,
+      "bio": "Located in Montreal, Lieux Communs works with grapes, apples, flowers, herbs, berries etc from Quebec and Ontario to produce small batch natural wines, cidres, and other hybrid bevrages.", 
+      "producer": "Lieux Communs", 
+      "region": "Montreal"
+    }, 
+    {
+      "name": "Bencze Birtok",
+      "_id": 816,
+      "bio": "From producers site: When we first saw Szent György-hegy, the hill that now gives home to our estate, we have utterly fallen in love with it. The spirit and the untouched nature of this place has changed our lives forever.We started making wine just for ourselves, which is still to this day is inspired by the excitement of experimentation and the ways to discover the potential in the terroir that surrounds us. We don't use commercial yeast, we let the juice to ferment by its own yeast flora, which gives our wines a special, unique and distinct aroma. By the constant expelling of wine additives we can preserve the fruits original characteristics and the unique minerality of the volcanic soil. Our main goal is making natural wines in order to show the most of the terroir. We try to focus on exploring traditional Hungarian grape varieties and cultivate what is given by nature. Beside cultivating vineyards and making wine, we felt the need to provide accomodation for guests arriving to winetasting. When we bought the vineyards on the hillside, we also transformed the old summer houses into guesthouses.", 
+      "producer": "Bencze Birtok", 
+      "region": "Badascony" 
+    }
+]
