@@ -8,6 +8,7 @@
       "_id": 111,
       "imageSrc": "./assets/argiletestpic.jpeg",
       "producer": "Chateau Lafitte", 
+      "producerId": 814,
       "grapes": "Petit Manseng",
       "notes": "Beautiful and frank minerality, dry white wine with surprising balance. Tension and fruit, fresh, lively, and length. Unique aromatics."
     }, 
@@ -20,6 +21,7 @@
     "_id": 112,
     "imageSrc": "./assets/potatoland.jpeg",
     "producer": "Matthias Warnung", 
+    "producerId": "",
     "grapes": "Gruner Veltiner",
     "notes": "Easy drinking, crisp", 
     "method": "Lighter style of Gruner from young vines, fermented and aged in stainless steel  rather than large Austrian oak. Manual harvested of whole bunch, direct press, fermented with indigenous  yeast in stainless steel, matured for 11months, undergoes malolactic  fermentation."
@@ -33,6 +35,7 @@
     "_id": 113,
     "imageSrc": "./assets/doux.jpeg",
     "producer": "Chateau Lafitte", 
+    "producerId": 814,
     "grapes": "Petit Manseng, Gros Manseng",
     "notes": "Honey"
 }, 
@@ -45,6 +48,7 @@
     "_id": 114,
     "imageSrc": "./assets/versant.jpeg",
     "producer": "Lieux Communs", 
+    "producerId": 815,
     "grapes": "Seyval",
     "notes": "Fun!"
 }, 
@@ -57,6 +61,7 @@
     "_id": 311,
     "imageSrc": "./assets/finsalskullons.jpeg",
     "producer": "Finca Parera", 
+    "producerId": "",
     "grapes": "Xarel-lo, Grenache Blanc, Sumoll",
     "notes": "Juicy, red fruits, floral notes, hints of earth. Palate is light, fresh and very easy drinking. Grapefruit juice.", 
     "method": "Ruben Parera and his father, Jordi, turned their family farm into a fully organic estate to produce the most natural wines. The property includes almond, olive and cherry trees as well as an orchard, and has been certified biodynamic since 2015. Since then, they have been making a range of 6 authentic still wines, focusing on tradition, respect and simplicity. Fins Als Kullons it is a most irreverent natural red wine, breaking all the winemaking rules by mixing white and red varieties in the same wine. It comes from Demeter certified vineyards planted in limestone and clay soil, cultivated according to biodynamic practices in every phase. The harvest is carried out manually at the optimum moment of ripeness. In the winery, the Fins Als Kullons grapes are fermented separately in stainless steel tanks with native yeasts. Then they are put together in cement tanks for 9 months. Finally it is bottled without being filtered, refined or adding sulphites. Fins Als Kullons is the result of an unusual mixture of white and red varieties. A wine that looks both red and rosé and is easy to drink on any occasion thanks to its lightness and freshness."
@@ -70,6 +75,7 @@
     "_id": 411,
     "imageSrc": "./assets/srcrosso.jpeg",
     "producer": "SRC VINI", 
+    "producerId": 812,
     "grapes": "Nerello Mascalese",
     "notes": "The aromatics are  pure dark cherry, salt air, and wet rocks. The palate has more cherry, minerals  and a slight note of walnuts while the energy in the glass is palatable and could  only come from volcanic soils.", 
     "method": "The SRC Etna Rosso is from organic vines that are around  70 years old. After three months of fermentation, the wine is aged for a year  before being bottled according to a biodynamic calendar."
@@ -83,6 +89,7 @@
     "_id": 211,
     "imageSrc": "./assets/100vej.jpeg",
     "producer": "Podere Pradarolo", 
+    "producerId": "",
     "grapes": "Malvasia",
     "notes": "A natural orange wine with a full body and intense tea-like aromas of  dried white flowers, dried stone fruit and citrus peel. Complex, aromatic and full  of life. Best served with food. Slightly fresher than previous vintages with the  reduced skin contact time. The winemaker adjusts this in line with how the  vintage has shaped up.", 
     "method": "Organic Malvasia grapes were hand harvested and underwent  a 100 day maceration period in stainless steel. Spontaneous fermentation with  indigenous yeast. No fining, filtration or added sulphur. "
@@ -96,6 +103,7 @@
     "_id": 115,
     "imageSrc": "./assets/auto.jpeg",
     "producer": "Bencze Birtoc", 
+    "producerId": 816,
     "grapes": "Furmint, Harslevelu, Keknyelu",
     "notes": "A bright and fun introduction to more natural, indigenous white blends,  with notes of tropical fruit, pear, and lime. Lively and playful, this is an anytime  white for natural wine."
 }, 
@@ -132,7 +140,8 @@
     "category": "Maceration",
     "_id": 212,
     "imageSrc": "./assets/onlyzuul.jpeg",
-    "producer": "Swick", 
+    "producer": "Swick",
+    "producerId": 813, 
     "grapes": "Pinot Gris, Gewurztraminer",
     "notes": "Tropical, lychee, stonefruit, pineapple.",
     "method": "30 days on the skins."
@@ -146,6 +155,7 @@
     "_id": 313,
     "imageSrc": "./assets/joyhillrose.jpeg",
     "producer": "Joy Hill", 
+    "producerId": 817,
     "grapes": "Gamay, Chardonnay, Gamaret",
     "notes": "Rose pet nat, fun, summery, red fruits.",
     "method":"Ancestral methode, without disgorgement, 5 months in concrete vats, 3 months sur lattes. No sulphites added. "
@@ -209,6 +219,7 @@
     "_id": 413,
     "imageSrc": "./assets/joyhillred.jpeg",
     "producer": "Joy Hill", 
+    "producerId": 817,
     "grapes": "Gamay",
     "notes": "Notes of cherries, black pepper, licorice with a hint of tobacco.", 
     "method": "Wood - old oak, stainless steel. Unfiltered, unfined, spontaneos fermentation."

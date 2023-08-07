@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
 // import { useNavigate } from "react-router-dom";
 
 
@@ -7,21 +8,19 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
 
-    const [wines, setWines] = useState("");
+    const [wines, setWines] = useState([]);
 
     useEffect(() => {
         fetch("/wines")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log(data.data);
                 setWines(data.data);
-                // console.log(wines);
             })
             .catch(error => {
                 console.log("error");
               })
     }, []);
-
 
 
     return (
@@ -30,7 +29,13 @@ const Home = () => {
         <h1> home page slash login page </h1>
             {wines !== undefined ? (
                 <Wrapper>
-                    <li key ={wines._id}>{wines.name}</li>
+                    <ul key ={wines._id}>{wines.name}</ul>
+                    <SearchBar 
+                    wines={wines}
+                    handleSelect={(wine) => {
+                      console.log(wine)
+                    }}
+                    />
                     
             
                 </Wrapper>

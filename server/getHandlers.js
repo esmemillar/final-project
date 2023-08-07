@@ -131,9 +131,43 @@ const getWine = async (req, res) => {
     client.close();
 };
 
+const getProducer = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    const producerId = Number(req.params.producerId);
+
+    console.log("from getHandlers:" + producerId);
+
+    try {
+        client.connect();
+        
+        const db = client.db('finalproj');
+
+        const data = await db.collection('producers').findOne({_id: producerId});
+
+        if (data === null){
+            throw new Error();
+        }
+
+        res.status(200).json({
+            status: 200,
+            data: data
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.status(404).json({
+            status: 404, 
+            message: 'Product not found'
+        });
+    }
+
+    client.close();
+};
+
 module.exports = { 
     getAllWines,
+    getWine,
     getAllProducers, 
-    getByName, 
-    getWine
+    getProducer,
+    getByName
  };

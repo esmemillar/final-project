@@ -44,7 +44,7 @@ const Wines = () => {
                         <p>{wine.name}</p>
                         <p>{wine.producer}</p>
                         <p>$ {wine.price}</p>
-                        <button onClick={handleClick}>View details</button>
+                        <Button onClick={handleClick}>View details</Button>
     
                         <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
 
@@ -67,6 +67,21 @@ const Wrapper = styled.div`
 const Image = styled.img`
     width: 200px;
     height: auto;
+`;
+
+const Button = styled.button`
+text-decoration: none;
+padding: 10px;
+font-weight: bold;
+color: #082A63;
+
+&:active {
+    color: #3C73CF;
+}
+
+&:hover {
+    color: #3C73CF;
+}
 `;
 
 

@@ -21,6 +21,13 @@ const Header = () => {
 
                 <NavbarLink to={"/favorites"}> My Sips </NavbarLink>
                 <NavbarLink to={"/profile"}>Profile </NavbarLink>
+
+                <Dropdown>Browse by
+                    <DropdownLink to={"/grapes"}>Grape</DropdownLink>
+                    <DropdownLink to={"/styles"}>Style</DropdownLink>
+                    <DropdownLink to={"/regions"}>Place</DropdownLink>
+
+                </Dropdown>
                 {/* {
                 state !== undefined ? 
                 // <NavbarLink to={"/favorites"}> My Sips ( {state.length} ) </NavbarLink>
@@ -35,7 +42,7 @@ const Header = () => {
 
 
 const Wrapper = styled.nav`
-    width: 300px;
+    width: 500px;
     display: flex;
     float: left;
     resize: vertical;
@@ -63,11 +70,12 @@ const DropdownLink = styled(NavLink)`
 const Dropdown = styled.p`
 text-decoration: none;
 padding: 10px;
-width: 60px;
+width: 100px;
 font-weight: bold;
 color: #082A63;
 margin: 0;
 cursor: pointer;
+justify-content: center;
 
 
 &:active {

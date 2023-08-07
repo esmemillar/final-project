@@ -27,7 +27,7 @@ const SearchBar = ({ wines, handleSelect }) => {
         }}
          />
         <Button onClick={() => setValue('')}>Clear</Button>
-        </Wrapper>
+        {/* </Wrapper> */}
         
 
         <List>
@@ -44,6 +44,7 @@ const SearchBar = ({ wines, handleSelect }) => {
         ))}
         </ul>
         </List>
+        </Wrapper>
         </>
     );
 } else {
@@ -53,7 +54,8 @@ const SearchBar = ({ wines, handleSelect }) => {
 
 const Wrapper = styled.div`
     display: flex;
-    margin: 60px;
+    margin: 20px;
+    float: right;
 `;
 
 const Input = styled.input`
@@ -65,24 +67,34 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-    background: blue;
-    color: white;
-    border-radius: 5px;
-    width: 60px;
-    height: 50px;
-    margin-top: 25px;
+text-decoration: none;
+padding: 10px;
+margin-top: 30px;
+height: 40px;
+font-weight: bold;
+color: #082A63;
+
+&:active {
+    color: #3C73CF;
+}
+
+&:hover {
+    color: #3C73CF;
+}
 
 `;
 
 const List = styled.div`
     position: absolute;
-    margin-top: 150px;
+    margin-top: 70px;
     justify-content: center;
+    float: right;
+    margin-right: 70px;
 `;
 
 const ListItems = styled.div`
     padding: 10px;
-    width: 500px;
+    width: 300px;
     border-radius: 15px;
 
 
