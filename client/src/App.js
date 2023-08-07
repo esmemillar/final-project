@@ -9,6 +9,7 @@ import Home from "./Home";
 import Wines from "./Wines";
 import Producers from "./Producers";
 import SearchBar from './SearchBar';
+import WineDetails from './WineDetails';
 
 const App = () => {
 
@@ -45,6 +46,7 @@ const App = () => {
               <Routes>
                   <Route path="/" element={<Home/>} />
                   <Route path="/wines" element={<Wines/>} />
+                  <Route path="/wines/:wineId" element={<WineDetails/>} />
                   <Route path="/producers" element={<Producers />} />
                   <Route path="*" element={<h1>404: Oops!</h1>} />
               </Routes>

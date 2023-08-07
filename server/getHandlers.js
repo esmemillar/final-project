@@ -100,8 +100,40 @@ const getByName = async (req, res) => {
     client.close();
 };
 
+const getWine = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    const wineId = Number(req.params.wineId);
+
+    try {
+        client.connect();
+        
+        const db = client.db('finalproj');
+
+        const data = await db.collection('wines').findOne({_id: wineId});
+
+        if (data === null){
+            throw new Error();
+        }
+
+        res.status(200).json({
+            status: 200,
+            data: data
+        })
+
+    } catch (err) {
+        console.log(err);
+        res.status(404).json({
+            status: 404, 
+            message: 'Product not found'
+        });
+    }
+
+    client.close();
+};
+
 module.exports = { 
     getAllWines,
     getAllProducers, 
-    getByName
+    getByName, 
+    getWine
  };

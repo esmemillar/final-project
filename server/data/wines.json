@@ -136,9 +136,109 @@
     "grapes": "Pinot Gris, Gewurztraminer",
     "notes": "Tropical, lychee, stonefruit, pineapple.",
     "method": "30 days on the skins."
+}, 
+{
+    "name": "Le Gosier",
+    "price": "75",
+    "year": "2021",
+    "region": "Quebec",
+    "category": "Frizzante rose",
+    "_id": 313,
+    "imageSrc": "./assets/joyhillrose.jpeg",
+    "producer": "Joy Hill", 
+    "grapes": "Gamay, Chardonnay, Gamaret",
+    "notes": "Rose pet nat, fun, summery, red fruits.",
+    "method":"Ancestral methode, without disgorgement, 5 months in concrete vats, 3 months sur lattes. No sulphites added. "
+}, 
+{
+    "name": "Chat Noir",
+    "price": "N/A",
+    "year": "2022",
+    "region": "Alsace",
+    "category": "Frizzante",
+    "_id": 511,
+    "imageSrc": "./assets/chatnoir.jpeg",
+    "producer": "Domaine Rohrer", 
+    "grapes": "Sylvaner, Muscat",
+    "notes": "Crisp, refreshing, incredible finish.",
+    "method": "The Rohrer family became early adopters of sustainable and organic  farming methods. In the 1960s Ludovics grandfather had already stopped the  use of herbicide and encouraged herbs to grow between the vines. In the 1980s  they ceased the use of all chemical pesticides and finally in 2001, André started  the conversion of the Domaine towards organic certification. Today they are  certified both organic and biodynamic. This conversion in the vineyard over the past decades has allowed them to  improve the purity of their wines, with the full expression of their terroirs.  Perfect expertise of vinification and natural winemaking, these wines are as  pure as they come. Organic and biodynamic farming in the vineyard along with  hand harvesting is followed in the cellar by traditional ageing in old Alsacian oak  foudres. Most of the wines have no filtration and no sulphur added, only the wines with residual sugar are lightly filtered and lightly sulphured so they  remain stable. It is also common that the family will hold wines longer in the cellar when a vintage or a cuvee needs it, for example the 2019 will only be  released for 2021 Spring. Methode traditionelle."
+}, 
+{
+    "name": "Force Celeste",
+    "price": "90",
+    "year": "2021",
+    "region": "Swartland",
+    "category": "Rose",
+    "_id": 314,
+    "imageSrc": "./assets/forceceleste.jpeg",
+    "producer": "Mother Rock", 
+    "grapes": "Cinsault",
+    "notes": "Unfiltered and full of flavour, with some fine lees particles lending hints of  baking spices. Funky and tart, with notes of baked strawberries and peppery  freesias. Slowly whole-bunch pressed and vinified without any additives, for  texture and a dry finish. The result is fresh and pure, food-friendly, and  drinkable."
+}, 
+{
+    "name": "Gluck",
+    "price": "115",
+    "year": "2020",
+    "region": "Styrie",
+    "category": "Full body white",
+    "_id": 116,
+    "imageSrc": "./assets/gluck.jpeg",
+    "producer": "Werlitsch", 
+    "grapes": "Sauvignon Blanc, Morillon",
+    "notes": "Food wine with great texture and notes of honey and apples.", 
+    "method": "biodynamic farming on the steep hills in Styria. Gluck means happiness and  is a cuvee of Morillon (Chardonnay) and Sauvignon Blanc. Minimalist  winemaking as always. Skin fermented for 2 weeks and aged on its fine lees in  large oak casks for 2 years. Unfined. Unfiltered. Min SO2.. There are two  skincontact wines from Werlitsch in clay bottles: Gluck & Freude. The main  difference between the two are that Freude is macerated as whole bunches,  whilst Gluck is destemmed." 
+}, 
+{
+    "name": "L Intemporel",
+    "price": "75",
+    "year": "2021",
+    "region": "Alsace",
+    "category": "Easy drinking white",
+    "_id": 117,
+    "imageSrc": "./assets/intemporel.jpeg",
+    "producer": "Domaine Rohrer", 
+    "grapes": "Sylvaner",
+    "notes": "Crisp, mineral, fresh, white fruits and citrus"
+}, 
+{
+    "name": "Foret Noire",
+    "price": "80",
+    "year": "2021",
+    "region": "Quebec",
+    "category": "Light red",
+    "_id": 413,
+    "imageSrc": "./assets/joyhillred.jpeg",
+    "producer": "Joy Hill", 
+    "grapes": "Gamay",
+    "notes": "Notes of cherries, black pepper, licorice with a hint of tobacco.", 
+    "method": "Wood - old oak, stainless steel. Unfiltered, unfined, spontaneos fermentation."
+}, 
+{
+    "name": "La Confidente",
+    "price": "70",
+    "year": "2022",
+    "region": "Loire",
+    "category": "Easy drinking white",
+    "_id": 118,
+    "imageSrc": "./assets/laconfidente.jpeg",
+    "producer": "Domaine de la Garreliere", 
+    "grapes": "Chenin Blanc",
+    "notes": "Very crisp, nice fruit. Good dryness and acidity.", 
+    "method": "Stainless steel."
+}, 
+{
+    "name": "Aglo",
+    "price": "70",
+    "year": "2018",
+    "region": "Calabria",
+    "category": "Easy drinking white",
+    "_id": 119,
+    "imageSrc": "./assets/aglo.jpeg",
+    "producer": "Maradei", 
+    "grapes": "Grenache Blanc, Malvasia",
+    "notes": "Packed with notes of white flower and apricot, with hints of  baking spices. This is a white wine that makes you sit up and take notice, full in  flavor and lengthy on the finish.", 
+    "method": "The Maradei winery sits  between the municipalities of Saracena, Firmo and Lungro, in the area between  the Pollino National Park and the land of Sybaris. There the Maradei family has  been producing wine and olive oil since the 1980’s all with organic certification  and biodynamic conversion in progress."
 }
-
-
 ]
 
 

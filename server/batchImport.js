@@ -30,4 +30,4 @@ const batchImportProducers = async () => {
 
 
 batchImportWines();
-// batchImportProducers();
+batchImportProducers();
