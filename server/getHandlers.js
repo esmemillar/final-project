@@ -69,36 +69,6 @@ const getAllProducers = async (req, res) => {
     client.close();
 };
 
-const getByName = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-
-    try {
-        client.connect();
-
-        const db = client.db('finalproj');
-
-        const producers = await db.collection('producers').findOne({name: searchName });
-        const wines = await db.collection('wines').findOne({name: searchName });
-
-        if (producers || wines === null){
-            throw new Error();
-        }
-
-        res.status(200).json({
-            status: 200,
-            data: producers && wines,
-        });
-
-    } catch(err) {
-        console.log(err);
-        res.status(404).json({
-            status: 404,
-            message: 'Data not found' 
-        })
-    }
-
-    client.close();
-};
 
 const getWine = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
@@ -164,10 +134,40 @@ const getProducer = async (req, res) => {
     client.close();
 };
 
+const getByGrape = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+
+    try {
+        client.connect();
+
+        const db = client.db('finalproj');
+
+const data = await db.collection('wines').findOne({grapes: selectedGrape});
+
+        if (producers || wines === null){
+            throw new Error();
+        }
+
+        res.status(200).json({
+            status: 200,
+            data: producers && wines,
+        });
+
+    } catch(err) {
+        console.log(err);
+        res.status(404).json({
+            status: 404,
+            message: 'Data not found' 
+        })
+    }
+
+    client.close();
+};
+
 module.exports = { 
     getAllWines,
     getWine,
     getAllProducers, 
     getProducer,
-    getByName
+    getByGrape
  };

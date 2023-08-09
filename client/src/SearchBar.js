@@ -8,10 +8,18 @@ const SearchBar = ({ wines, handleSelect }) => {
         let wine = wines.map(wine => {
             return {
                 name: wine.name, 
-                _id: wine._id
+                _id: wine._id, 
+                grapes: wine.grapes, 
+                year: wine.year, 
+                producer: wine.producer, 
+                category: wine.category,
+                notes: wine.notes,
+                region: wine.region, 
+                method: wine.method
             }
         });
 
+        console.log(wine)
 
     if (wine !== undefined) {
     return (
@@ -32,13 +40,14 @@ const SearchBar = ({ wines, handleSelect }) => {
 
         <List>
         <ul>
-            {wine.filter(wineFiltered => wineFiltered.name.toLowerCase().includes(value.toLowerCase()) && value.length >= 2).map(wineFiltered => (
+            {wine.filter(wineFiltered => (value.length >= 2) && ((wineFiltered.name.toLowerCase().includes(value.toLowerCase())) || (wineFiltered.notes.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.producer.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.grapes.toLowerCase().includes(value.toLowerCase())))))).map(wineFiltered => (
                     <ListItems 
                     key={wineFiltered._id}
                     onClick={() => handleSelect(wineFiltered._id)}>
                             <span>
-                                {wineFiltered.name.slice(0, value.length)}
-                                <Prediction>{wineFiltered.name.slice(value.length)}</Prediction>
+                                {wineFiltered.name.slice(0, value.length)} 
+                                <Prediction>{wineFiltered.name.slice(value.length)} </Prediction>
+                                  {wineFiltered.year} - {wineFiltered.grapes}
                             </span>
                     </ListItems>
         ))}
@@ -68,18 +77,21 @@ const Input = styled.input`
 
 const Button = styled.button`
 text-decoration: none;
+border: none;
 padding: 10px;
 margin-top: 30px;
 height: 40px;
 font-weight: bold;
-color: #082A63;
+
+border-radius: 10px;
+background-color: pink;
 
 &:active {
-    color: #3C73CF;
+    color: #F61BF3;
 }
 
 &:hover {
-    color: #3C73CF;
+    color: hot-pink;
 }
 
 `;
@@ -87,22 +99,18 @@ color: #082A63;
 const List = styled.div`
     position: absolute;
     margin-top: 70px;
-    justify-content: center;
-    margin-right: 70px;
+    margin-right: 30vw;
+    margin-left: 30vw;
+    float: left;
 `;
 
 const ListItems = styled.div`
     padding: 10px;
-    width: 300px;
-    border-radius: 15px;
-
+    width: 500px;
+    border-radius: 10px;
 
     &:hover {
         background: pink;
-    }
-
-    &:focus {
-        background: blue;
     }
 `;
 

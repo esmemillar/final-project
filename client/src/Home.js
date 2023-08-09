@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -9,6 +9,8 @@ import SearchBar from "./SearchBar";
 const Home = () => {
 
     const [wines, setWines] = useState([]);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
         fetch("/wines")
@@ -22,7 +24,7 @@ const Home = () => {
               })
     }, []);
 
-// map out wines and then match wine from handleselect to wine name to get wine._id to push to params to navigate to wine details
+
     return (
 
         <>
@@ -34,6 +36,7 @@ const Home = () => {
                     wines={wines}
                     handleSelect={(wine) => {
                       console.log(wine);
+                      navigate(`/wines/${wine}`);
                     }}
                     />
                     
@@ -47,6 +50,7 @@ const Home = () => {
 
     )
 };
+
 
 
 const Wrapper = styled.div`

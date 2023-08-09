@@ -30,7 +30,8 @@ const WineDetails = () => {
                     <p> $ {wine.price}</p>
                     <p>{wine.grape}</p>
                     <p>{wine.category}</p>
-                    <p>{wine.bio}</p>
+                    <p>{wine.notes}</p>
+                    <>{wine.method}</>
                     <p>{wine.producer}</p>
                     <p>{wine.region}</p>
                     <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
