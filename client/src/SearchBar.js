@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ wines, handleSelect }) => {
     const [value, setValue] = useState ('');
@@ -28,17 +29,16 @@ const SearchBar = ({ wines, handleSelect }) => {
          />
         <Button onClick={() => setValue('')}>Clear</Button>
         {/* </Wrapper> */}
-        
 
         <List>
         <ul>
             {wine.filter(wineFiltered => wineFiltered.name.toLowerCase().includes(value.toLowerCase()) && value.length >= 2).map(wineFiltered => (
                     <ListItems 
                     key={wineFiltered._id}
-                    onClick={() => handleSelect(wineFiltered.name)}>
+                    onClick={() => handleSelect(wineFiltered._id)}>
                             <span>
                                 {wineFiltered.name.slice(0, value.length)}
-                                <Prediction>{wineFiltered.name.slice(value.length)} </Prediction>
+                                <Prediction>{wineFiltered.name.slice(value.length)}</Prediction>
                             </span>
                     </ListItems>
         ))}
@@ -88,7 +88,6 @@ const List = styled.div`
     position: absolute;
     margin-top: 70px;
     justify-content: center;
-    float: right;
     margin-right: 70px;
 `;
 

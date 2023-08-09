@@ -12,7 +12,10 @@ import Producers from "./Producers";
 import WineDetails from './WineDetails';
 import ProducerDetails from './ProducerDetails';
 
+import GlobalStyles from "./GlobalStyles";
+
 const App = () => {
+
 
   //   useEffect(() => {
   //   fetch('/hello')
@@ -36,6 +39,7 @@ const App = () => {
 
   return (
       <BrowserRouter>
+      <GlobalStyles />
           <Header/>
           {/* <SearchBar 
           wines={wines}
@@ -64,32 +68,3 @@ const Wrapper = styled.div`
 
 export default App;
 
-// function App() {
-
-//   useEffect(() => {
-//     fetch('/hello')
-//     .then(res => res.json())
-//     .then(data => console.log(data));
-//   }, [])
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

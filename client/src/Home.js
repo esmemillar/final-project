@@ -22,18 +22,18 @@ const Home = () => {
               })
     }, []);
 
-
+// map out wines and then match wine from handleselect to wine name to get wine._id to push to params to navigate to wine details
     return (
 
         <>
         <h1> home page slash login page </h1>
             {wines !== undefined ? (
                 <Wrapper>
-                    <ul key ={wines._id}>{wines.name}</ul>
+                    <ul key ={wines._id}></ul>
                     <SearchBar 
                     wines={wines}
                     handleSelect={(wine) => {
-                      console.log(wine)
+                      console.log(wine);
                     }}
                     />
                     
@@ -46,7 +46,7 @@ const Home = () => {
         </>
 
     )
-}
+};
 
 
 const Wrapper = styled.div`
