@@ -105,7 +105,7 @@ const getProducer = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
     const producerId = Number(req.params.producerId);
 
-    console.log("from getHandlers:" + producerId);
+    // console.log("from getHandlers:" + producerId);
 
     try {
         client.connect();
@@ -164,10 +164,74 @@ const data = await db.collection('wines').findOne({grapes: selectedGrape});
     client.close();
 };
 
+const getUsers = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+
+    try {
+        client.connect();
+
+        const db = client.db('finalproj');
+
+        const data = db.collection('users').find().toArray();
+
+        res.status(200).json({
+            status: 200,
+            data: data
+        })
+
+    } catch(err) {
+        console.log(err);
+        res.status(404).json({
+            status: 404,
+            message: 'not users found'
+        })
+    }
+
+    client.close();
+
+};
+
+const getUser = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    const userId = Number(req.params.userId);
+
+    try {
+        client.connect();
+
+        const db = client.db('finalproj');
+
+        const data = db.collection('users').findOne({_id: userId });
+
+        if (data === null){
+            throw new Error();
+        }
+
+        res.status(200).json({
+            status: 200,
+            data: data
+        })
+
+    } catch(err) {
+        console.log(err);
+        res.status(404).json({
+            status: 404,
+            message: 'user not found'
+        })
+    }
+
+    client.close();
+
+};
+
+
+
+
 module.exports = { 
     getAllWines,
     getWine,
     getAllProducers, 
     getProducer,
-    getByGrape
+    getByGrape, 
+    getUsers, 
+    getUser
  };

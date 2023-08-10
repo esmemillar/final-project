@@ -102,5 +102,33 @@
     "bio": "Ariane Lesné has been working in wine since the early 1990s after leaving university with a postgraduate degree in management and marketing, specifically in the area of wines and spirits. In 1994, she joined the Repaire de Bacchus, a chain of Parisian wine stores. It was in 1998 that Ariane worked her first harvest in Burgundy and led her to complete her training with a Professional Patent Manager Farmer, with the goal of one day managing her own domain. She stayed in Burgundy for six years, where she had the chance to work with one of the seminal (now certified biodynamic) domaines in Nuits St. Georges, Domaine de l Arlot. In the mid-2000s, Ariane went to Great Britain to work for an English wine merchant who introduced her to the world of fine wine speculation, but in 2008, she returned to Paris to take up the trade of wine merchant. It was here that she was first immersed in the world of organic, biodynamic, and natural wines which fueled her desire to return to the land. During this time she was falling under the spell of pineau d aunis, specifically the 2005 vintage of Domaine de Montrieux Rouge, which reminded her of the texture of the pinot noir that she loved so much but with an added aromatic side typical of the grape variety. This was the spark that then led to a deeper interest in the region the variety is grown — that is in and around Touraine and Anjou — and a quest to taste all the wines made from it. After a few years of exploration, it was settled that this is where she was going to live. In the beginning of 2014, Ariane learned that Emile Héredia, the owner of Domaine de Montrieux in the Côteaux du Vendômois, would be selling the estate. She did not think twice about it, and by harvest time she was living on the estate, ultimately taking over by the spring of 2015. When she first took the reins, the property was planted to 7.5 hectares, but after two years of losses (2016 loss of 60% and 2017 loss of 40%), she decided to uproot some vines to replant in a better-suited parcel in 2018. Now, the estate has a little over 6 hectares of vines planted with pineau d aunis, gamay teinturiers, chenin blanc, pinot blanc, pinot noir, and cabernet franc. In 2017 Ariane decided to begin a small negoce project to supplement her production in lean years, as many in the Loire had to do after a string of trying vintages.",
     "producer": "Domaine de Montrieux",
     "region": "Loire"
+  }, 
+  {
+    "name": "Mackenzie Brisbois",
+    "_id": 826,
+    "bio": "Trail Estate: We tend to push boundaries. But this is also natural. Winemaking requires a healthy dose of intuition and curiosity. And no year is ever the same! We want our wines to be equally ephemeral and express the best each vineyard has to offer. We believe every wine should be surprising, textural and soulful; not predictable.We use low-intervention practices in the vineyard and cellar. Since 2018 we have employed primarily organic and regenerative practices to build soil health and aid biodiversity. Our grapes are hand-picked and hand-processed. In the cellar, wild, non-select yeasts ferment our wines and we guide them with as little intervention as possible — and use no ‘corrections’ such as enzymes, tannins, colours, etc. Sulphurs or zero to low (usually 0-15ppm but always <50ppm). All our wines, regardless of style, remain unfiltered and whole. Each wine tells the story of site and vintage with unabashed honesty. Mackenzie Brisbois: Learning, living and drinking in the culture of amazing wine while working at Norman Hardie Winery and gaining experience during harvests in South African (Bouchard Finlayson and Sumaridge) and New Zealand (Central Otago Wine Company) shaped her style. Taking on a new project, Mackenzie moved from Prince Edward County to Nanaimo, British Columbia (Chateau Wolff). Having sampled various wine regions, Mackenzie is confident that the limestone soils of PEC are where she wants to put down her roots.",
+    "producer": "Trail Estate",
+    "region": "Ontario"
+  }, 
+  {
+    "name": "Philippe Formentin",
+    "_id": 827,
+    "bio": "Natural artisan wine. Vines cultivated in organic and biodynamic agriculture. In Occitan, a descendant of the spoken Latin language of the Roman Empire, « Opi d aqui » is translated as « opium from here ». Here, in the Languedoc, a region filled with vineyards from the 1st century, A.D., our vines and winery are carefully tended by hand, giving our own personal touch to the wine, a natural purity, lightness, and freshness. After having worked 10 years at Domaine Chabanon in Lagamas, near Montpellier, Philippe Formentin, became a « flying winemaker », consulting at vineyards around the world, in California, Corsica, Russia, and India.In 2011, Philippe discovered a small winery nestled in the wild « Garrigue » the south of France equivalent to the « Outback »  just outside Clermont l Hérault. Here in the foothills of the Larzac, Philippe has brought life to his dream of making his own natural artisan wine. Philippes first trial Cuvée, « Opi d aqui », 2011, quickly sold out. Encouraged by this success, Philippe has created for the 2012 vintage, 5 distinctive natural cuvées.",
+    "producer": "Opi d'Aqui",
+    "region": "Languedoc"
+  }, 
+  {
+    "name": "Matthias Warnung",
+    "_id": 828,
+    "bio": "Matthias Warnung farms 10 hectares of vines in the Kamptal region of Austria. He took over the operation of the winery from his father in 2010, after spending time working with various other winemakers, most notably the famed South African natural winemaker behind Testalonga, Craig Hawkins. He ferments all the wines spontaneously and uses little to no sulfur. ",
+    "producer": "Matthias Warnung",
+    "region": "Kamptal"
+  }, 
+  {
+    "name": "Lole Rabasco",
+    "_id": 829,
+    "bio": "Our company is a family consists of 9 hectares of vineyards in the town of Pianella part and a part in the municipality of Loreto Aprutino with an average age of 30, the beautiful hillside aspects, mild climate with great temperature ranges provide the environmental conditions perfect for growing grapes; We conduct our vines respecting the natural balance of the ecosystem and the environment, with the belief that wine is made in the vineyard and not in the cellar. Harvests are manual and occur closely following the ripening of the grapes curves, the low yields per hectare provide us with great quality grapes. All this allows the wine to faithfully reflect the terroir, with great sincerity and frankness, each of our wines has a strong personality.",
+    "producer": "Rabasco",
+    "region": "Abruzzo"
   }
 ]

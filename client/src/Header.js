@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-// import { useContext } from 'react';
-// import { CartContext } from "./context/CartContext";
+import { useContext } from 'react';
+import { FavoritesContext } from "./context/FavoritesContext";
+import Login from "./Login";
 
 const Header = () => {
     const [count, setCount] = useState(0);
-    // const {state} = useContext(CartContext);
+    const {state} = useContext(FavoritesContext);
 
     return (
         <div>
@@ -18,16 +19,22 @@ const Header = () => {
                     <DropdownLink to={"/producers"}>Producers</DropdownLink>
 
                 </Dropdown>
-
-                <NavbarLink to={"/favorites"}> My Sips </NavbarLink>
-                <NavbarLink to={"/profile"}>Profile </NavbarLink>
+                {
+                state !== undefined ? 
+                <NavbarLink to={"/favorites"}> My favorites ( {state.length} ) </NavbarLink>
+                : <NavbarLink to={"/favorites"}> My favorites ( {count} ) </NavbarLink>
+            }
+                {/* <NavbarLink to={"/favorites"}> My Sips ( {count} )</NavbarLink>
+                <NavbarLink to={"/profile"}>Profile </NavbarLink> */}
 
                 <Dropdown>Browse by
                     <DropdownLink to={"/grapes"}>Grape</DropdownLink>
                     <DropdownLink to={"/styles"}>Style</DropdownLink>
                     <DropdownLink to={"/regions"}>Place</DropdownLink>
+                    <DropdownLink to={"/year"}>Year</DropdownLink>
 
                 </Dropdown>
+                <Login />
                 {/* {
                 state !== undefined ? 
                 // <NavbarLink to={"/favorites"}> My Sips ( {state.length} ) </NavbarLink>

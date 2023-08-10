@@ -1,21 +1,11 @@
 import styled from "styled-components";
-import { useContext, useEffect, useState } from "react";
-import { FavoritesContext } from "./context/FavoritesContext";
-
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
-const Wines = () => {
+const BrowseByYear = () => {
     const [allWines, setAllWines] = useState("");
-    const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
     
-
     let navigate = useNavigate();
-
-
 
     useEffect(() => {
         fetch("/wines")
@@ -32,26 +22,18 @@ const Wines = () => {
     return (
 
         <>
-        <h1>Wines page </h1>
+        <h1>Browse by style </h1>
         <Wrapper>
             {allWines.length > 0 ? (
                 allWines.map((wine) => {
-                    const handleClick = (e) => {
-                        e.preventDefault();
+                 
+                    // // const handleClick = (e) => {
+                    // //     e.preventDefault();
 
-                        navigate(`/wines/${wine._id}`);
-                    }
+                    // //     navigate(`/year/${year}`);
+                    // // }
                     return (
-                        <ul key ={wine._id}>
-                        <p>{wine.name}</p>
-                        <p>{wine.producer}</p>
-                        <p>$ {wine.price}</p>
-                        <Button onClick={handleClick}>View details</Button>
-                        <Button onClick={() => addToFavorites(wine)}>Add to favorites!</Button>
-    
-                        <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
-
-                    </ul>
+                        <ul key ={wine._id}>{wine.year}</ul>
                     )
                 })
             )
@@ -67,10 +49,7 @@ const Wines = () => {
 const Wrapper = styled.div`
 `;
 
-const Image = styled.img`
-    width: 200px;
-    height: auto;
-`;
+
 
 const Button = styled.button`
 text-decoration: none;
@@ -89,4 +68,4 @@ color: #082A63;
 
 
 
-export default Wines;
+export default BrowseByYear;

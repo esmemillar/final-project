@@ -14,8 +14,11 @@ import ProducerDetails from './ProducerDetails';
 import Grapes from './Grapes';
 import Regions from './Regions';
 import BrowseByStyle from './BrowseByStyle';
+import BrowseByYear from './BrowseByYear';
+import Favorites from './Favorites';
 
 import GlobalStyles from "./GlobalStyles";
+import CreateAccount from './CreateAccount';
 
 const App = () => {
 
@@ -34,6 +37,9 @@ const App = () => {
                   <Route path="/grapes" element={<Grapes/>} />
                   <Route path="/regions" element={<Regions/>} />
                   <Route path="/styles" element={<BrowseByStyle/>} />
+                  <Route path="/year" element={<BrowseByYear/>} />
+                  <Route path="/favorites" element={<Favorites/>} />
+                  <Route path="/signup" element={<CreateAccount/>} />
                   <Route path="*" element={<h1>404: Oops!</h1>} />
               </Routes>
           </Wrapper>

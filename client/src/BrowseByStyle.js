@@ -19,17 +19,31 @@ const BrowseByStyle = () => {
             })
     }, []);
 
+    // const wine = allWines.map((wine) => {
+    //             return {
+    //                 name: wine.name, 
+    //                 _id: wine._id, 
+    //                 grapes: wine.grapes, 
+    //                 year: wine.year, 
+    //                 producer: wine.producer, 
+    //                 category: wine.category,
+    //                 notes: wine.notes,
+    //                 region: wine.region, 
+    //                 method: wine.method
+    //             }
+    //         });
+
     return (
 
         <>
-        <h1>Browse by style </h1>
+        <h1>Browse by color </h1>
         <Wrapper>
             {allWines.length > 0 ? (
                 allWines.map((wine) => {
                     // const handleClick = (e) => {
                     //     e.preventDefault();
 
-                    //     navigate(`/regions/${region}`);
+                    //     navigate(`/styles/${style}`);
                     // }
                     return (
                         <ul key ={wine._id}>{wine.category}</ul>
@@ -46,6 +60,9 @@ const BrowseByStyle = () => {
 };
 
 const Wrapper = styled.div`
+    margin-top: 80px;
+    column-count: 5;
+    row-count: 2;
 `;
 
 

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 const WineDetails = () => {
     const [wine, setWine] = useState([]);
     const params = useParams();
     const wineId = params.wineId;
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`/wines/${wineId}`)
@@ -20,6 +22,12 @@ const WineDetails = () => {
             })
     }, [wineId]);
 
+        const handleClick = (e) => {
+            e.preventDefault();
+            navigate(`/producers/${wine.producerId}`);
+        }
+    
+
     return (
         <Wrapper>
             {wine.length !== 0 ? (
@@ -28,12 +36,14 @@ const WineDetails = () => {
                 <Wrapper>
                     <h3>{wine.name}</h3>
                     <p> $ {wine.price}</p>
-                    <p>{wine.grape}</p>
+                    <p><Bold>{wine.grapes}</Bold> from <Italic>{wine.region}</Italic></p>
                     <p>{wine.category}</p>
+                    
+                    <Container>
                     <p>{wine.notes}</p>
-                    <>{wine.method}</>
-                    <p>{wine.producer}</p>
-                    <p>{wine.region}</p>
+                    <p>{wine.method}</p>
+                    </Container>
+                    <Button onClick={handleClick}>{wine.producer}</Button>
                     <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
                 </Wrapper>
                 </>
@@ -48,11 +58,32 @@ const WineDetails = () => {
 
 
 const Wrapper = styled.div`
+    margin: 80px;
 `;
 const Image = styled.img`
     width: 200px;
     height: auto;
 `;
 
+const Button = styled.button`
+    cursor: pointer;
+    margin: 15px;
+    background-color: pink;
+    padding: 10px;
+    border: none;
+`;
 
+const Bold = styled.span`
+    font-weight: bold;
+`;
+
+const Italic = styled.span`
+    font-style: italic;
+`;
+
+const Container = styled.div`
+    width: 60vw;
+    text-align: justify;
+    text-justify: inter-word;
+`;
 export default WineDetails;
