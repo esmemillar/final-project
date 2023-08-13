@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const Login = () => {
+const Login = ({userId}) => {
 
     // const [userInfo, setUserInfo] = useState({});
     const [login, setLogin] = useState({});
@@ -36,7 +36,7 @@ const Login = () => {
 
         const dataBody = {...login};
 
-
+    };
         return (
             <Wrapper>
                 <div>
@@ -73,16 +73,11 @@ const Login = () => {
 
             </Wrapper>
         )
-    }
-
-    
-
-};
+    };
 
 const Wrapper = styled.div`
-display: flex;
+display: flex-wrap;
 justify-content: center;
-/* align-items: center; */
 margin: auto;
 width: 80vw;
 gap: 50px;
@@ -91,7 +86,7 @@ flex-wrap: wrap;
 
 const Container = styled.div`
 display: flex;
-flex-direction: column;
+
 justify-content: center;
 align-items: center;
 margin: auto;

@@ -4,11 +4,14 @@ import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Favorites = () => {
+
+// TO DO: LOGIN AND SAVE CURRENT USER IN LOCAL Storage, LINK USER ID TO MONGO DB DATABASE AND PUSH FAVORITES FOR EACH USER TO SAID DATABASE
+const Favorites = ({ userId }) => {
     const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
     const navigate = useNavigate();
 
-  
+    console.log(userId);
+
     const [favorites, setFavorites] = useState([])
 
     const [favoritesId, setFavoritesId] = useState(null)
@@ -37,47 +40,16 @@ const Favorites = () => {
         }
     }, [favorites])
 
-    // useEffect(() => {
-    //     let totalAmount = 0;
 
-    //     state.forEach((wine) => {
-    //         // Convert item price into a number
-    //         // Remove dollar sign from the price
-    //         const price = item.price.slice(1);
-            
-    //         // Add amount to the total
-    //         totalAmount += price * item.quantity;
-    //     });
 
-    //     setTotal(totalAmount.toFixed(2));
 
-    // }, [state])
-
-    // const increaseQuantity = (item) => {
-    //     if (item.quantity < item.numInStock){
-    //         const updatedItem = {...item, quantity: item.quantity + 1}
-    //         updateItemQuantity(updatedItem)
-    //     }
-    //     setCartUpdated(false);
-    // }
-
-    // const decreaseQuantity = (item) => {
-    //     if (item.quantity > 1){
-    //         const updatedItem = {...item, quantity: item.quantity - 1}
-    //         updateItemQuantity(updatedItem)
-    //     }
-    //     setCartUpdated(false);
-    // }
-
-    // saves cart to database
     const saveFavorites = async () => {
-        // delete any existing cart before saving to ensure no 
-        // duplicate carts in database
+  
         try {
             await fetch(`/favorites/${favoritesId}`, {
                 method: "DELETE"
             })
-            // need to render page to change button from save to clear
+           
             await fetch('/favorites', {
                 method: 'POST',
                 headers: {
@@ -108,7 +80,7 @@ const Favorites = () => {
     // }
 
     return(
-        <><h1>Your Sips</h1>
+        <><h1>Your Favorites</h1>
         <Wrapper>
             <div>
             <Container>

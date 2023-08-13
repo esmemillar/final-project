@@ -1,59 +1,30 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const BrowseByStyle = () => {
-    const [allWines, setAllWines] = useState("");
-    
+
+
     let navigate = useNavigate();
 
-    useEffect(() => {
-        fetch("/wines")
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data.data);
-                setAllWines(data.data);
-            })
-            .catch(error => {
-                console.log("error")
-            })
-    }, []);
-
-    // const wine = allWines.map((wine) => {
-    //             return {
-    //                 name: wine.name, 
-    //                 _id: wine._id, 
-    //                 grapes: wine.grapes, 
-    //                 year: wine.year, 
-    //                 producer: wine.producer, 
-    //                 category: wine.category,
-    //                 notes: wine.notes,
-    //                 region: wine.region, 
-    //                 method: wine.method
-    //             }
-    //         });
 
     return (
 
+        // TO DO figure out preventDefault for links and add endpoints to return correct wines for ByColourDetails component
         <>
-        <h1>Browse by color </h1>
-        <Wrapper>
-            {allWines.length > 0 ? (
-                allWines.map((wine) => {
-                    // const handleClick = (e) => {
-                    //     e.preventDefault();
+            <h1>Browse by color </h1>
+            <Wrapper>
 
-                    //     navigate(`/styles/${style}`);
-                    // }
-                    return (
-                        <ul key ={wine._id}>{wine.category}</ul>
-                    )
-                })
-            )
-                : (
-                    <Wrapper>loading......</Wrapper>
-                )}
-                </Wrapper>
+                <ul>
+                    <Link onClick={navigate("/colour/red")}>Red</Link>
+                    <Link onClick={navigate("/colour/rose")}>Rose</Link>
+                    <Link onClick={navigate("/colour/maceration")}>Maceration</Link>
+                    <Link onClick={navigate("/colour/white")}>White</Link>
+                    <Link onClick={navigate("/colour/frizzante")}>Frizzante</Link>
+                </ul>
+
+            </Wrapper>
         </>
 
     )
@@ -82,6 +53,20 @@ color: #082A63;
 }
 `;
 
+const Link = styled(NavLink)`
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    color: #082A63;
+
+    &:active {
+        color: #3C73CF;
+    }
+
+    &:hover {
+        color: #3C73CF;
+    }
+`;
 
 
 export default BrowseByStyle;

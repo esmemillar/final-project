@@ -1,5 +1,5 @@
 import './App.css';
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -18,15 +18,22 @@ import BrowseByYear from './BrowseByYear';
 import Favorites from './Favorites';
 
 import GlobalStyles from "./GlobalStyles";
+import Login from './Login';
 import CreateAccount from './CreateAccount';
 
 const App = () => {
+
+  const [userId, setUserId] = useState(() => {
+    const storedValue = window.localStorage.getItem("userId");
+    
+    return storedValue !== null ? JSON.parse(storedValue) : storedValue;
+});
 
 
   return (
       <BrowserRouter>
       <GlobalStyles />
-          <Header/>
+          <Header userId={userId}/>
           <Wrapper>
               <Routes>
                   <Route path="/" element={<Home/>} />
@@ -36,10 +43,11 @@ const App = () => {
                   <Route path="/producers/:producerId" element={<ProducerDetails/>} />
                   <Route path="/grapes" element={<Grapes/>} />
                   <Route path="/regions" element={<Regions/>} />
-                  <Route path="/styles" element={<BrowseByStyle/>} />
+                  <Route path="/colour" element={<BrowseByStyle/>} />
                   <Route path="/year" element={<BrowseByYear/>} />
-                  <Route path="/favorites" element={<Favorites/>} />
-                  <Route path="/signup" element={<CreateAccount/>} />
+                  <Route path="/favorites" element={<Favorites userId={userId}/>} />
+                  <Route path="/login" element={<Login userId={userId}/>} />
+                  <Route path="/signup" element={<CreateAccount setUserId={setUserId}/>} />
                   <Route path="*" element={<h1>404: Oops!</h1>} />
               </Routes>
           </Wrapper>

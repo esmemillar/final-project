@@ -1,28 +1,32 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { FavoritesContext } from "./context/FavoritesContext";
+
+// const { v4: uuidv4, v4 } = require("uuid");
 
 
-const CreateAccount = () => {
+const CreateAccount = ({ setUserId }) => {
 
     const [userInfo, setUserInfo] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
+    const {state} = useContext(FavoritesContext);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const key = e.target.name;
         const value = e.target.value;
 
-        // Look if the new key value is empty
+       
         if (value.length === 0){
-            // remove empty keys from userInfo
+        
             let newUserInfo = {...userInfo};
             delete newUserInfo[key]
             setUserInfo({
                 ...newUserInfo
             })
         } else {
-            // set new key value
+          
             setUserInfo({
                 ...userInfo,
                 [key]: value
@@ -30,12 +34,54 @@ const CreateAccount = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
         const dataBody = {...userInfo};
 
+        const verifyUserInfo = () => {
+            if (userInfo.firstName === undefined) {
+                throw new Error("Please enter your name")
+            } else if(userInfo.lastName === undefined) {
+                throw new Error ("Please enter your last name!") 
+            } else if (userInfo.email === undefined) {
+                throw new Error ("Please enter a valid email address") 
+            } else {
+                setErrorMessage(" ")
+            }
+        };
 
+
+        const handleSubmit = async (e, dataBody) => {
+            e.preventDefault();
+    
+        try {
+            await verifyUserInfo();
+
+            const res = await fetch('/signup/create', {
+                method: 'POST', 
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify({  ...dataBody })
+            })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log("new account created")
+                    console.log(data.data.insertedId);
+                    window.localStorage.setItem("userId", JSON.stringify(data.data));
+                    setUserId(data.data.insertedId);
+                    navigate("/");
+                })
+
+            const data = await res.json()
+
+            navigate("/");
+
+        } catch (err) {
+            setErrorMessage(err.message);
+        }
+
+    };
         return (
             <Wrapper>
                 <div>
@@ -83,7 +129,7 @@ const CreateAccount = () => {
 
             </Wrapper>
         )
-    }
+    };
     
     const Wrapper = styled.div`
         display: flex;
@@ -175,6 +221,5 @@ const CreateAccount = () => {
         color: darkred;
     `
 
-};
 
 export default CreateAccount;

@@ -4,8 +4,13 @@ import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { FavoritesContext } from "./context/FavoritesContext";
 import Login from "./Login";
+import CreateAccount from "./CreateAccount";
 
-const Header = () => {
+// TO DO: MAKE LOGIN LINK CONDITIONAL TO EITHER CREATE ACCOUNT OR LOGIN DEPENDING ON STATUS OF LOCAL STORAGE
+
+
+
+const Header = ({userId}) => {
     const [count, setCount] = useState(0);
     const {state} = useContext(FavoritesContext);
 
@@ -19,22 +24,22 @@ const Header = () => {
                     <DropdownLink to={"/producers"}>Producers</DropdownLink>
 
                 </Dropdown>
-                {
+                {/* {
                 state !== undefined ? 
                 <NavbarLink to={"/favorites"}> My favorites ( {state.length} ) </NavbarLink>
                 : <NavbarLink to={"/favorites"}> My favorites ( {count} ) </NavbarLink>
-            }
+            } */}
                 {/* <NavbarLink to={"/favorites"}> My Sips ( {count} )</NavbarLink>
                 <NavbarLink to={"/profile"}>Profile </NavbarLink> */}
 
                 <Dropdown>Browse by
                     <DropdownLink to={"/grapes"}>Grape</DropdownLink>
-                    <DropdownLink to={"/styles"}>Style</DropdownLink>
+                    <DropdownLink to={"/colour"}>Colour</DropdownLink>
                     <DropdownLink to={"/regions"}>Place</DropdownLink>
                     <DropdownLink to={"/year"}>Year</DropdownLink>
 
                 </Dropdown>
-                <Login />
+                {/* <RightNavbarLink to={"/signup"}> Login </RightNavbarLink> */}
                 {/* {
                 state !== undefined ? 
                 // <NavbarLink to={"/favorites"}> My Sips ( {state.length} ) </NavbarLink>
@@ -42,6 +47,11 @@ const Header = () => {
             } */}
             
             </Wrapper>
+            <WrapperRight>
+
+            <> {userId === null ? <><NavbarLink to={"/login"}> Login! </NavbarLink></> : <NavbarLink to={"/favorites"}> My favorites ( {state.length} ) </NavbarLink> }</>
+            {/* <NavbarLink to={"/signup"}> Login </NavbarLink> */}
+            </WrapperRight>
         </div>
 
     );
@@ -52,6 +62,13 @@ const Wrapper = styled.nav`
     width: 500px;
     display: flex;
     float: left;
+    resize: vertical;
+`;
+
+const WrapperRight = styled.nav`
+    margin-right: 40px;
+    display: flex;
+    float: right;
     resize: vertical;
 `;
 
@@ -69,6 +86,8 @@ const NavbarLink = styled(NavLink)`
         color: #3C73CF;
     }
 `;
+
+
 
 const DropdownLink = styled(NavLink)`
     display: none;

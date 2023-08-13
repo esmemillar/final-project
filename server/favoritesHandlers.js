@@ -13,6 +13,7 @@ const options = {
     useUnifiedTopology: true
 };
 
+// TO DO : update to find SPECIFIC USER by ID and return array of associated favorites
 
 const getFavorites = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
@@ -21,7 +22,7 @@ const getFavorites = async (req, res) => {
 
         const db = client.db('finalproj');
 
-        const data = await db.collection('favorites').find().toArray();
+        const data = await db.collection('users').find().toArray();
 
         if (data === null){
             throw new Error();
@@ -38,121 +39,80 @@ const getFavorites = async (req, res) => {
 };
 
 
-const createFavorites = async (req, res) => {
+const addFavorites = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
 
-    const favoriteWines = req.body; // List of all favorites
-    const favorites = {
-        _id: uuidv4(),
-        favorites: favoritesWines
-    };
 
     try {
         client.connect();
 
         const db = client.db('finalproj');
+        console.log("connected");
 
-        const result = await db.collection('favorites').insertOne(favorites);
+        const _id = user._id
 
-        // Return faves upon successful request
-        if (result.acknowledged === true) {
-            return res.status(200).json({
-                status: 200,
-                message: "Favorites created!",
-                data: cart
-            })
-        };
+        const findUser = await db.collection("users").findOne({ _id })
 
-    } catch (err) {
-        console.log(err);
-        res.status(400).json({status: 400, message: err.message})
-    }
+        const updateFavorites = await db.collection("users").updateOne({favorites: user.favorites});
 
-    client.close();
-
-};
-
-
-const updateFavorites = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-
-    const favoritesId = req.params.favoritesId;
-    const favoriteWines = req.body;
-
-    try {
-        client.connect();
-
-        const db = client.db('finalproj');
-
-        const data = await db.collection('favorites').updateOne(
-            {
-                "_id": favoritesId
-            },
-            {
-                '$set': {
-                    "favorites.$[favorites]": {...favoriteWines}
-                }
-            },
-            {
-                "arrayFilters": [
-                    {
-                        "favorites._id": favoriteWines._id
-                    }
-                ]
-            }
-        );
-
-        if (data.modifiedCount >= 1){
-            res.status(200).json({status: 200, messsage: 'favorites updated.'})
-        }
-
-    } catch (err){
-        res.status(404).json({status: 404, message: err.message})
-    }
-
-    client.close();
-};
-
-
-const deleteFavorites = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-
-    const favoritesId = req.params.favoritesId;
-    console.log(favoritesId)
-
-    try {
-        client.connect();
-
-        const db = client.db('finalproj');
-
-        const data = db.collection('favorites').findOneAndDelete({ _id: favoritesId })
-        console.log(data)
-        
-        if (data.deletedCount === 0) {
-            return res.status(404).json({
-                status: 404,
-                message: "favorites ID could not be found...",
-                data: favoritesId,
-            })
+        if (findUser != undefined) {
+            res.status(200).json({ status: 200, message: "Your favorites have been updated!", data: updateFavorites })
         } else {
-            return res.status(200).json({
-                status: 200,
-                message: "Favorite removed.",
-                data: favoritesId,
-            })
+            res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
         }
 
+
     } catch (err) {
-        res.status(404).json({status: 404, message: err.message})
+        console.log(err.stack);
+        res.status(500).json({ status: 500, message: "something went wrong" });
+    } finally {
+        client.close();
+        console.log("disconnected!");
     }
-    
-    client.close();
 
 };
+
+
+// TO DO: add remove from favorites feature - find user by ID and remove wine by ID
+
+// const removeFavorite = async (req, res) => {
+//     const client = new MongoClient(MONGO_URI, options);
+
+//     const favoritesId = req.params.favoritesId;
+//     console.log(favoritesId)
+
+//     try {
+//         client.connect();
+
+//         const db = client.db('finalproj');
+
+//         const data = db.collection('favorites').findOneAndDelete({ _id: favoritesId })
+//         console.log(data)
+        
+//         if (data.deletedCount === 0) {
+//             return res.status(404).json({
+//                 status: 404,
+//                 message: "favorites ID could not be found...",
+//                 data: favoritesId,
+//             })
+//         } else {
+//             return res.status(200).json({
+//                 status: 200,
+//                 message: "Favorite removed.",
+//                 data: favoritesId,
+//             })
+//         }
+
+//     } catch (err) {
+//         res.status(404).json({status: 404, message: err.message})
+//     }
+    
+//     client.close();
+
+// };
 
 module.exports = {
     getFavorites,
-    createFavorites,
-    updateFavorites,
-    deleteFavorites
+    addFavorites
+    // removeFavorite
 }
