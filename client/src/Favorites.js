@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { FavoritesContext } from "./context/FavoritesContext";
-import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +9,10 @@ const Favorites = ({ userId }) => {
     const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
     const navigate = useNavigate();
 
-    console.log(userId);
+    let currentUser = window.localStorage.getItem("userId");
+    console.log(currentUser);
+
+    const [userInfo, setUserInfo] = useState({});
 
     const [favorites, setFavorites] = useState([])
 
@@ -23,9 +25,9 @@ const Favorites = ({ userId }) => {
         if (state.length === 0) {
             const res = fetch('/favorites')
             const data = res.json()
-            if (data.data[0] != undefined) {
+            if (data.data[0] !== undefined) {
                 setFavorites(data.data[0].favorites)
-                setFavoritesId(data.data[0]._id)
+                setFavoritesId(currentUser)
                 setFavoritesUpdated(true)
             }  
         }
@@ -64,21 +66,6 @@ const Favorites = ({ userId }) => {
         }
     }
 
-    // const clearFavorites = async () => {
-    //     try {
-    //         await fetch(`/favorites/${favoritesId}`, {
-    //             method: "DELETE"
-    //         })
-            
-    //         favorites.forEach((wine) => {
-    //             deleteFromFavorites(wine)
-    //         })
-    //         setFavoritesUpdated(false)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
     return(
         <><h1>Your Favorites</h1>
         <Wrapper>
@@ -109,8 +96,7 @@ const Favorites = ({ userId }) => {
             {state.length > 0 &&
             <CheckoutSection>
                 <Container>
-                    {/* <TotalAmount>Total: ${total}</TotalAmount> */}
-                    {favoritesUpdated != true ? 
+                    {favoritesUpdated !== true ? 
                         <SaveButton onClick={() => saveFavorites()}>Save favorites</SaveButton> :
                         <ClearCartButton>Clear favorites</ClearCartButton>}
                 </Container>

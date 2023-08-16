@@ -35,7 +35,7 @@ const CreateAccount = ({ setUserId }) => {
     };
 
 
-        const dataBody = {...userInfo};
+        // const dataBody = {...userInfo};
 
         const verifyUserInfo = () => {
             if (userInfo.firstName === undefined) {
@@ -44,14 +44,19 @@ const CreateAccount = ({ setUserId }) => {
                 throw new Error ("Please enter your last name!") 
             } else if (userInfo.email === undefined) {
                 throw new Error ("Please enter a valid email address") 
+            } else if (userInfo.password !== userInfo.passwordConfirm) {
+                throw new Error ("Passwords do not match :(")
             } else {
-                setErrorMessage(" ")
+                setErrorMessage("");
             }
         };
 
 
-        const handleSubmit = async (e, dataBody) => {
+        const handleSubmit = async (e) => {
             e.preventDefault();
+
+            //keep this favorites array 
+            const dataBody = {...userInfo, favorites: []}
     
         try {
             await verifyUserInfo();
@@ -67,10 +72,10 @@ const CreateAccount = ({ setUserId }) => {
                 .then(res => res.json())
                 .then((data) => {
                     console.log("new account created")
-                    console.log(data.data.insertedId);
-                    window.localStorage.setItem("userId", JSON.stringify(data.data));
-                    setUserId(data.data.insertedId);
-                    navigate("/");
+                    console.log(data.data._id);
+                    // window.localStorage.setItem("userId", JSON.stringify(data.data));
+                    // setUserId(data.data.insertedId);
+                    navigate("/login");
                 })
 
             const data = await res.json()
@@ -80,8 +85,8 @@ const CreateAccount = ({ setUserId }) => {
         } catch (err) {
             setErrorMessage(err.message);
         }
-
     };
+
         return (
             <Wrapper>
                 <div>
@@ -110,6 +115,22 @@ const CreateAccount = ({ setUserId }) => {
                                 type="email" 
                                 placeholder="Email"
                                 name="email"
+                                required={true}
+                                onChange={handleChange} 
+                            />
+
+                            <Input 
+                                type="password" 
+                                placeholder="Password"
+                                name="password"
+                                required={true}
+                                onChange={handleChange} 
+                            />
+
+                            <Input 
+                                type="password" 
+                                placeholder="Confirm password"
+                                name="passwordConfirm"
                                 required={true}
                                 onChange={handleChange} 
                             />

@@ -2,10 +2,23 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const Login = ({setUserId}) => {
+        const [allUsers, setAllUsers] = useState([]);
+    
+        // useEffect(() => {
+        //     fetch("/users")
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             console.log(data.data);
+        //             setAllUsers(data.data);
+        //             console.log(allUsers);
+        //         })
+        //         .catch(error => {
+        //             console.log("error")
+        //         })
+        // }, []);
 
-const Login = ({userId}) => {
 
-    // const [userInfo, setUserInfo] = useState({});
     const [login, setLogin] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
@@ -14,16 +27,13 @@ const Login = ({userId}) => {
         const key = e.target.name;
         const value = e.target.value;
 
-        // Look if the new key value is empty
         if (value.length === 0){
-            // remove empty keys from userInfo
-            let login = {...login};
+            // let login = {...login};
             delete login[key]
             setLogin({
                 ...login
             })
         } else {
-            // set new key value
             setLogin({
                 ...login,
                 [key]: value
@@ -31,12 +41,51 @@ const Login = ({userId}) => {
         }
     };
 
+    // MAP THRU users database !!!!! - setUserId to corresponding _id associated with email address
+    // const verifyLogin = () => {
+    //     if (Object.values(users).includes(login.email) && Object.values(users).includes(login.password)) {
+    //         console.log("email and password are in database");
+    //     } else {
+    //        window.alert("not found")
+    //     }
+    // }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const dataBody = {...login};
 
+        try {
+            // await verifyLogin();
+
+            // const res = await fetch(`/users/${userId}`, {
+            const res = await fetch('/login', {
+                method: 'POST', 
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify({  ...dataBody })
+            })
+            .then(res => res.json())
+            .then((data) => {
+                console.log("logged in letttts goooooooo")
+                console.log(data.data);
+                window.localStorage.setItem("userId", JSON.stringify(data.data));
+                setUserId(data.data._id);
+                navigate("/");
+            })
+
+            const data = await res.json()
+
+            navigate("/");
+            
+        } catch (err) {
+            setErrorMessage(err.message);
+        }
+
     };
+
         return (
             <Wrapper>
                 <div>
@@ -60,7 +109,7 @@ const Login = ({userId}) => {
                             />
                 
                         <ButtonContainer>
-                            <Submit type="submit" disabled={Object.keys(login).length < 4}>Login</Submit>
+                            <Submit type="submit" disabled={Object.keys(login).length < 2}>Login</Submit>
                         </ButtonContainer>
                     </StyledForm>
                     {errorMessage.length > 0 &&
@@ -83,6 +132,20 @@ width: 80vw;
 gap: 50px;
 flex-wrap: wrap;
 `
+const Button = styled.button`
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    color: #082A63;
+
+    &:active {
+        color: #3C73CF;
+    }
+
+    &:hover {
+        color: #3C73CF;
+    }
+`;
 
 const Container = styled.div`
 display: flex;

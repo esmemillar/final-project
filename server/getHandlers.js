@@ -27,6 +27,8 @@ const getAllWines = async (req, res) => {
         const data = await db.collection('wines').find().toArray();
         // const data = db.collection('wines').findOne({_id: 111 });
 
+        // console.log(data);
+
         res.status(200).json({
             status: 200,
             data: data
@@ -38,9 +40,10 @@ const getAllWines = async (req, res) => {
             status: 404,
             message: 'Data not found' 
         })
+    } finally {
+        client.close();
     }
 
-    client.close();
 };
 
 const getAllProducers = async (req, res) => {
@@ -173,11 +176,13 @@ const getUsers = async (req, res) => {
         const db = client.db('finalproj');
 
         const data = db.collection('users').find().toArray();
+        console.log(data);
 
         res.status(200).json({
             status: 200,
             data: data
         })
+
 
     } catch(err) {
         console.log(err);
@@ -186,42 +191,43 @@ const getUsers = async (req, res) => {
             message: 'not users found'
         })
     }
-
-    client.close();
-
-};
-
-const getUser = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-    const userId = Number(req.params.userId);
-
-    try {
-        client.connect();
-
-        const db = client.db('finalproj');
-
-        const data = db.collection('users').findOne({_id: userId });
-
-        if (data === null){
-            throw new Error();
-        }
-
-        res.status(200).json({
-            status: 200,
-            data: data
-        })
-
-    } catch(err) {
-        console.log(err);
-        res.status(404).json({
-            status: 404,
-            message: 'user not found'
-        })
+    finally {
+        client.close();
     }
 
-    client.close();
-
 };
+
+// const getUser = async (req, res) => {
+//     const client = new MongoClient(MONGO_URI, options);
+//     const userId = Number(req.params.userId);
+
+//     try {
+//         client.connect();
+
+//         const db = client.db('finalproj');
+
+//         const data = db.collection('users').findOne({_id: userId });
+
+//         if (data === null){
+//             throw new Error();
+//         }
+
+//         res.status(200).json({
+//             status: 200,
+//             data: data
+//         })
+
+//     } catch(err) {
+//         console.log(err);
+//         res.status(404).json({
+//             status: 404,
+//             message: 'user not found'
+//         })
+//     }
+
+//     client.close();
+
+// };
 
 
 
@@ -232,6 +238,5 @@ module.exports = {
     getAllProducers, 
     getProducer,
     getByGrape, 
-    getUsers, 
-    getUser
+    getUsers
  };

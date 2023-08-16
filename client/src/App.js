@@ -46,7 +46,7 @@ const App = () => {
                   <Route path="/colour" element={<BrowseByStyle/>} />
                   <Route path="/year" element={<BrowseByYear/>} />
                   <Route path="/favorites" element={<Favorites userId={userId}/>} />
-                  <Route path="/login" element={<Login userId={userId}/>} />
+                  <Route path="/login" element={<Login userId={userId} setUserId={setUserId}/>} />
                   <Route path="/signup" element={<CreateAccount setUserId={setUserId}/>} />
                   <Route path="*" element={<h1>404: Oops!</h1>} />
               </Routes>

@@ -64,7 +64,7 @@
         "_id": 311,
         "imageSrc": "./assets/finsalskullons.jpeg",
         "producer": "Finca Parera",
-        "producerId": "",
+        "producerId": 830,
         "grapes": "Xarel-lo, Grenache Blanc, Sumoll",
         "notes": "Juicy, red fruits, floral notes, hints of earth. Palate is light, fresh and very easy drinking. Grapefruit juice.",
         "method": "Ruben Parera and his father, Jordi, turned their family farm into a fully organic estate to produce the most natural wines. The property includes almond, olive and cherry trees as well as an orchard, and has been certified biodynamic since 2015. Since then, they have been making a range of 6 authentic still wines, focusing on tradition, respect and simplicity. Fins Als Kullons it is a most irreverent natural red wine, breaking all the winemaking rules by mixing white and red varieties in the same wine. It comes from Demeter certified vineyards planted in limestone and clay soil, cultivated according to biodynamic practices in every phase. The harvest is carried out manually at the optimum moment of ripeness. In the winery, the Fins Als Kullons grapes are fermented separately in stainless steel tanks with native yeasts. Then they are put together in cement tanks for 9 months. Finally it is bottled without being filtered, refined or adding sulphites. Fins Als Kullons is the result of an unusual mixture of white and red varieties. A wine that looks both red and rosé and is easy to drink on any occasion thanks to its lightness and freshness."
@@ -92,7 +92,7 @@
         "_id": 211,
         "imageSrc": "./assets/100vej.jpeg",
         "producer": "Podere Pradarolo",
-        "producerId": "",
+        "producerId": 831,
         "grapes": "Malvasia",
         "notes": "A natural orange wine with a full body and intense tea-like aromas of  dried white flowers, dried stone fruit and citrus peel. Complex, aromatic and full  of life. Best served with food. Slightly fresher than previous vintages with the  reduced skin contact time. The winemaker adjusts this in line with how the  vintage has shaped up.",
         "method": "Organic Malvasia grapes were hand harvested and underwent  a 100 day maceration period in stainless steel. Spontaneous fermentation with  indigenous yeast. No fining, filtration or added sulphur. "
@@ -120,7 +120,7 @@
         "_id": 412,
         "imageSrc": "./assets/grisbi.jpeg",
         "producer": "Aurelien Petit",
-        "producerId": "",
+        "producerId": 832,
         "grapes": "Cinsault, Grenache",
         "notes": "Beloved cuvee, easy drinking, earthy, red fruits, dark berries.",
         "method": "Manual harvest, natural fermentation with indigenous yeasts."
@@ -134,6 +134,7 @@
         "_id": 312,
         "imageSrc": "./assets/veliusrosato.jpeg",
         "producer": "Podere Pradarolo",
+        "producerId": 831,
         "grapes": "Barbera",
         "notes": "100% Barbera, earthy, elegant, dense red and black fruits, strawberries, cranberries, smoke and earth on the nose. Palate is dry, mineral, coppery, medium acidity. Tannins are soft, but present. Refreshing and complex.", 
         "method": ""
@@ -175,7 +176,7 @@
         "_id": 511,
         "imageSrc": "./assets/chatnoir.jpeg",
         "producer": "Domaine Rohrer",
-        "producerId": "",
+        "producerId": 833,
         "grapes": "Sylvaner, Muscat",
         "notes": "Crisp, refreshing, incredible finish.",
         "method": "The Rohrer family became early adopters of sustainable and organic  farming methods. In the 1960s Ludovics grandfather had already stopped the  use of herbicide and encouraged herbs to grow between the vines. In the 1980s  they ceased the use of all chemical pesticides and finally in 2001, André started  the conversion of the Domaine towards organic certification. Today they are  certified both organic and biodynamic. This conversion in the vineyard over the past decades has allowed them to  improve the purity of their wines, with the full expression of their terroirs.  Perfect expertise of vinification and natural winemaking, these wines are as  pure as they come. Organic and biodynamic farming in the vineyard along with  hand harvesting is followed in the cellar by traditional ageing in old Alsacian oak  foudres. Most of the wines have no filtration and no sulphur added, only the wines with residual sugar are lightly filtered and lightly sulphured so they  remain stable. It is also common that the family will hold wines longer in the cellar when a vintage or a cuvee needs it, for example the 2019 will only be  released for 2021 Spring. Methode traditionelle."
@@ -189,7 +190,7 @@
         "_id": 314,
         "imageSrc": "./assets/forceceleste.jpeg",
         "producer": "Mother Rock",
-        "producerId": "",
+        "producerId": 834,
         "grapes": "Cinsault",
         "notes": "Unfiltered and full of flavour, with some fine lees particles lending hints of  baking spices. Funky and tart, with notes of baked strawberries and peppery  freesias. Slowly whole-bunch pressed and vinified without any additives, for  texture and a dry finish. The result is fresh and pure, food-friendly, and  drinkable.",
         "method": ""
@@ -204,7 +205,7 @@
         "_id": 116,
         "imageSrc": "./assets/gluck.jpeg",
         "producer": "Werlitsch",
-        "producerId": "",
+        "producerId": 835,
         "grapes": "Sauvignon Blanc, Morillon",
         "notes": "Food wine with great texture and notes of honey and apples.",
         "method": "biodynamic farming on the steep hills in Styria. Gluck means happiness and  is a cuvee of Morillon (Chardonnay) and Sauvignon Blanc. Minimalist  winemaking as always. Skin fermented for 2 weeks and aged on its fine lees in  large oak casks for 2 years. Unfined. Unfiltered. Min SO2.. There are two  skincontact wines from Werlitsch in clay bottles: Gluck & Freude. The main  difference between the two are that Freude is macerated as whole bunches,  whilst Gluck is destemmed."
@@ -218,7 +219,7 @@
         "_id": 117,
         "imageSrc": "./assets/intemporel.jpeg",
         "producer": "Domaine Rohrer",
-        "producerId": "",
+        "producerId": 833,
         "grapes": "Sylvaner",
         "notes": "Crisp, mineral, fresh, white fruits and citrus"
     },
