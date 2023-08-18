@@ -22,7 +22,7 @@ const BrowseByYear = () => {
     return (
 
         <>
-        <h1>Browse by style </h1>
+        <h1>Browse by vintage </h1>
         <Wrapper>
             {allWines.length > 0 ? (
                 allWines.map((wine) => {

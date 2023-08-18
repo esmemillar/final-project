@@ -19,7 +19,7 @@ const SearchBar = ({ wines, handleSelect }) => {
             }
         });
 
-        console.log(wine)
+        // console.log(wine)
 
     if (wine !== undefined) {
     return (

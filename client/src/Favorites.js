@@ -1,109 +1,65 @@
 import { useContext, useEffect, useState } from "react";
 import { FavoritesContext } from "./context/FavoritesContext";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
-// TO DO: LOGIN AND SAVE CURRENT USER IN LOCAL Storage, LINK USER ID TO MONGO DB DATABASE AND PUSH FAVORITES FOR EACH USER TO SAID DATABASE
-const Favorites = ({ userId }) => {
-    const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
+// TO DO: SHOULD PUSH "FAVORITES" TO CURRENTUSER.FAVORITES ARRAY IN MONGODB DATABSE AND THEN RETURN CONTENTS OF THAT ARRAY 
+const Favorites = () => {
+    // const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
+    
     const navigate = useNavigate();
+    const params = useParams();
+    const userId = params.userId;
 
     let currentUser = window.localStorage.getItem("userId");
-    console.log(currentUser);
-
-    const [userInfo, setUserInfo] = useState({});
+    // console.log(currentUser);
+    // console.log(currentUser.favorites);
 
     const [favorites, setFavorites] = useState([])
 
-    const [favoritesId, setFavoritesId] = useState(null)
+    // const [favoritesId, setFavoritesId] = useState(null)
 
-    const [favoritesUpdated, setFavoritesUpdated] = useState(false)
-
-
-    useEffect(() => {
-        if (state.length === 0) {
-            const res = fetch('/favorites')
-            const data = res.json()
-            if (data.data[0] !== undefined) {
-                setFavorites(data.data[0].favorites)
-                setFavoritesId(currentUser)
-                setFavoritesUpdated(true)
-            }  
-        }
-    }, [])
+    // const [favoritesUpdated, setFavoritesUpdated] = useState(false)
 
 
     useEffect(() => {
-        if (favorites.length > 0) {
-            favorites.forEach((wine) => {
-                addToFavorites(wine)
+        fetch(`/favorites/${userId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.data);
+                setFavorites(data.data);
+            }) 
+            .catch(error => {
+                console.log(error)
             })
-        }
-    }, [favorites])
+    }, [userId]);
 
 
+    let justFavorites = favorites.favorites;
+    console.log(justFavorites)
 
-
-    const saveFavorites = async () => {
-  
-        try {
-            await fetch(`/favorites/${favoritesId}`, {
-                method: "DELETE"
-            })
-           
-            await fetch('/favorites', {
-                method: 'POST',
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(state)
-            })
-            setFavoritesUpdated(true)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    return(
-        <><h1>Your Favorites</h1>
+    return (
+        <>
+        <h1>Your favorites</h1>
         <Wrapper>
-            <div>
-            <Container>
-                {state.length === 0 ? <Empty>You have no saved sips</Empty> :
-                <>
-                    {state.map((wine, index) => {
-                        return (
-                        <ItemContainer key={wine._id} style={{borderBottom: index === state.length - 1 ? 0 : '1.5px solid lightgrey'}}>
-                            {/* <ItemImage src={item.imageSrc} /> */}
-                            <ItemInfo>
-                                <ItemName>{wine.name} - {wine.grapes}</ItemName>
-                                {/* {item.numInStock < 10 && <ItemStock>Only {item.numInStock} left in stock</ItemStock>} */}
-                                <ItemPrice>$ {wine.price}</ItemPrice>
-    
-                            </ItemInfo>
-                            <ItemButtons>
-                                <DeleteButton onClick={() => deleteFromFavorites(wine)}>Remove from favorites</DeleteButton>
-                            </ItemButtons>
-                        </ItemContainer>
-                        )
-                    })}
-                </>
-                }
-            </Container>
-            </div>
-            {state.length > 0 &&
-            <CheckoutSection>
-                <Container>
-                    {favoritesUpdated !== true ? 
-                        <SaveButton onClick={() => saveFavorites()}>Save favorites</SaveButton> :
-                        <ClearCartButton>Clear favorites</ClearCartButton>}
-                </Container>
-            </CheckoutSection>
-            }
+            {justFavorites !== undefined ? (
+                justFavorites.map((wine) => {
+                    return (
+                        <ul key ={wine._id}>
+                        <p>{wine.name}</p>
+                        <p>{wine.producer}</p>
+                        <p>$ {wine.price}</p>
+                        </ul>
+                    )
+                })
+            )
+            : (
+                <Wrapper>loading.....</Wrapper>
+            )}
         </Wrapper>
         </>
+ 
     )
 
 };

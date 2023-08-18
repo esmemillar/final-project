@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const Login = ({setUserId}) => {
         const [allUsers, setAllUsers] = useState([]);
@@ -79,7 +82,7 @@ const Login = ({setUserId}) => {
             const data = await res.json()
 
             navigate("/");
-            
+
         } catch (err) {
             setErrorMessage(err.message);
         }
@@ -88,6 +91,8 @@ const Login = ({setUserId}) => {
 
         return (
             <Wrapper>
+                <Auth0Provider><LoginButton /></Auth0Provider>
+                <LogoutButton />
                 <div>
                 <Container>
                     <StyledForm onSubmit={(e) => handleSubmit(e)}>

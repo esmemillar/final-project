@@ -16,7 +16,7 @@ const Home = () => {
         fetch("/wines")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data);
+                // console.log(data.data);
                 setWines(data.data);
             })
             .catch(error => {
@@ -28,7 +28,7 @@ const Home = () => {
     return (
 
         <>
-        <h1> home page slash login page </h1>
+        <h1> home page </h1>
             {wines !== undefined ? (
                 <Wrapper>
                     <ul key ={wines._id}></ul>

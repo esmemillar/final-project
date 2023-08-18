@@ -15,62 +15,104 @@ const options = {
 
 // TO DO : update to find SPECIFIC USER by ID and return array of associated favorites
 
+
 const getFavorites = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
+    const userId = req.params.userId;
+
     try {
-        client.connect();
+       await client.connect();
+        
+        const db = await client.db('finalproj');
 
-        const db = client.db('finalproj');
-
-        const data = await db.collection('users').find().toArray();
+        const data = await db.collection('users').findOne({_id: userId});
 
         if (data === null){
             throw new Error();
         }
 
-        res.status(200).json({status: 200, data: data});
+        res.status(200).json({
+            status: 200,
+            data: data
+        })
 
-    } catch(err) {
+    } catch (err) {
         console.log(err);
-        res.status(404).json({status: 404, message: err.message});
+        res.status(404).json({
+            status: 404, 
+            message: 'Product not found'
+        });
     }
 
     client.close();
 };
 
 
-const addFavorites = async (req, res) => {
+const updateFavorites = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
+    const db = await client.db('finalproj');
+    console.log("connected");
 
+    const _id = req.body._id
+    const user = req.body.user
+    console.log(req.body);
 
-    try {
-        client.connect();
+    await client.connect();
 
-        const db = client.db('finalproj');
-        console.log("connected");
-
-        const _id = user._id
-
-        const findUser = await db.collection("users").findOne({ _id })
-
-        const updateFavorites = await db.collection("users").updateOne({favorites: user.favorites});
-
-        if (findUser != undefined) {
-            res.status(200).json({ status: 200, message: "Your favorites have been updated!", data: updateFavorites })
+    const User = await db.collection("users")
+    // try {
+        const favoriteAdded = await User.updateOne(
+            { _id: req.body._id },
+            { $addToSet: { favorites: req.body.updatedFavorite } })
+    // }
+    // catch {
+        if (favoriteAdded) { 
+            res.status(200).json({ status: 200, message: "Your favorites have been updated!", data: favoriteAdded})
         } else {
             res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
         }
+            // res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
+    
+    // }
+    // finally {
+            // res.status(200).json({ status: 200, message: "Your favorites have been updated!"})
+    // }
+}
+
+    // const db = await client.db('finalproj');
+    // console.log("connected");
+
+    // const _id = req.body._id
+    // const user = req.body.user
+    // console.log(req.body);
+
+    // const findUser = await db.collection("users").findOne({ _id })
+    // console.log(findUser);
+    // const updatedFavorite = await db.collection("users").updateOne({ $addToSet: {favorites: req.body.updatedFavorite} });
 
 
-    } catch (err) {
-        console.log(err.stack);
-        res.status(500).json({ status: 500, message: "something went wrong" });
-    } finally {
-        client.close();
-        console.log("disconnected!");
-    }
+    // const User = await db.collection("users")
 
-};
+    // const favoriteAdded = await User.updateOne(
+    //     { _id: req.body._id },
+    //     { $addToSet: { favorites: req.body.updatedFavorite } })
+
+//         if (favoriteAdded !== undefined) {
+//             res.status(200).json({ status: 200, message: "Your favorites have been updated!", data: favoriteAdded})
+//         } else {
+//             res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
+//         }
+// }
+
+    // } catch (err) {
+    //     console.log(err.stack);
+    //     res.status(500).json({ status: 500, message: "something went wrong" });
+    // } finally {
+    //     client.close();
+    //     console.log("disconnected!");
+    // }
+
+
 
 
 // TO DO: add remove from favorites feature - find user by ID and remove wine by ID
@@ -78,17 +120,17 @@ const addFavorites = async (req, res) => {
 // const removeFavorite = async (req, res) => {
 //     const client = new MongoClient(MONGO_URI, options);
 
-//     const favoritesId = req.params.favoritesId;
-//     console.log(favoritesId)
+//     const _id = req.body._id
+//     console.log(_id);
 
 //     try {
-//         client.connect();
+//         await client.connect();
 
-//         const db = client.db('finalproj');
+//         const db = await client.db('finalproj');
 
-//         const data = db.collection('favorites').findOneAndDelete({ _id: favoritesId })
+//         const data = await db.collection('users').findOneAndDelete({ _id: favoritesId })
 //         console.log(data)
-        
+
 //         if (data.deletedCount === 0) {
 //             return res.status(404).json({
 //                 status: 404,
@@ -106,13 +148,13 @@ const addFavorites = async (req, res) => {
 //     } catch (err) {
 //         res.status(404).json({status: 404, message: err.message})
 //     }
-    
+
 //     client.close();
 
 // };
 
 module.exports = {
     getFavorites,
-    addFavorites
+    updateFavorites
     // removeFavorite
 }

@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { UserContext } from "./context/UserContext";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const WineDetails = () => {
+    const { user } = useAuth0();
     const [wine, setWine] = useState([]);
     const params = useParams();
     const wineId = params.wineId;
+    const { setFavorites } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -27,6 +31,22 @@ const WineDetails = () => {
             navigate(`/producers/${wine.producerId}`);
         }
     
+        const addToFavorites = ( wine ) => {
+            debugger
+                fetch('/favorites', {
+                    method: 'PATCH', 
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    }, 
+                    body: JSON.stringify({ updatedFavorite: wine, _id: JSON.parse(localStorage.getItem("userId"))._id, user: user })
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    setFavorites(data.data);
+                    console.log(data.data);
+                })
+        }
 
     return (
         <Wrapper>
@@ -45,6 +65,7 @@ const WineDetails = () => {
                     </Container>
                     <Button onClick={handleClick}>{wine.producer}</Button>
                     <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
+                    <Button onClick={() => addToFavorites(wine)}>Add to favorites!</Button>
                 </Wrapper>
                 </>
             )

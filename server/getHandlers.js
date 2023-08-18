@@ -20,14 +20,11 @@ const getAllWines = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
 
     try {
-        client.connect();
+        await client.connect();
 
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
         const data = await db.collection('wines').find().toArray();
-        // const data = db.collection('wines').findOne({_id: 111 });
-
-        // console.log(data);
 
         res.status(200).json({
             status: 200,
@@ -50,9 +47,9 @@ const getAllProducers = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
 
     try {
-        client.connect();
+       await client.connect();
 
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
         const data = await db.collection('producers').find().toArray();
 
@@ -78,9 +75,9 @@ const getWine = async (req, res) => {
     const wineId = Number(req.params.wineId);
 
     try {
-        client.connect();
+       await client.connect();
         
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
         const data = await db.collection('wines').findOne({_id: wineId});
 
@@ -111,9 +108,9 @@ const getProducer = async (req, res) => {
     // console.log("from getHandlers:" + producerId);
 
     try {
-        client.connect();
+       await client.connect();
         
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
         const data = await db.collection('producers').findOne({_id: producerId});
 
@@ -141,9 +138,9 @@ const getByGrape = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
 
     try {
-        client.connect();
+       await client.connect();
 
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
 const data = await db.collection('wines').findOne({grapes: selectedGrape});
 
@@ -171,11 +168,11 @@ const getUsers = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
 
     try {
-        client.connect();
+       await client.connect();
 
-        const db = client.db('finalproj');
+        const db = await client.db('finalproj');
 
-        const data = db.collection('users').find().toArray();
+        const data = await db.collection('users').find().toArray();
         console.log(data);
 
         res.status(200).json({

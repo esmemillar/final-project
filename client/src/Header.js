@@ -3,17 +3,29 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { FavoritesContext } from "./context/FavoritesContext";
+import { UserContext } from "./context/UserContext";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
-
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 // TO DO: MAKE LOGIN LINK CONDITIONAL TO EITHER CREATE ACCOUNT OR LOGIN DEPENDING ON STATUS OF LOCAL STORAGE
 
 
 
-const Header = ({userId}) => {
+const Header = () => {
     const [count, setCount] = useState(0);
     const {state} = useContext(FavoritesContext);
+    const {userId} = useContext(UserContext);
 
+    const { isAuthenticated } = useAuth0();
+
+    // let currentUser = window.localStorage.getItem("userId");
+    // console.log(currentUser);
+    // console.log(currentUser.favorites);
+
+    // let userId = (JSON.parse(localStorage.getItem("userId"))._id);
+    // console.log(userId);
     return (
         <div>
             <Wrapper>
@@ -49,7 +61,9 @@ const Header = ({userId}) => {
             </Wrapper>
             <WrapperRight>
 
-            <> {userId === null ? <><NavbarLink to={"/login"}> Login! </NavbarLink></> : <NavbarLink to={"/favorites"}> My favorites ( {state.length} ) </NavbarLink> }</>
+            <> {isAuthenticated === false ? <LoginButton/>: <LogoutButton/> }</>
+            
+            <NavbarLink to={`/favorites/${userId}`}> My favorites </NavbarLink>
             {/* <NavbarLink to={"/signup"}> Login </NavbarLink> */}
             </WrapperRight>
         </div>
