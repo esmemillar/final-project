@@ -27,7 +27,7 @@ const Favorites = () => {
         fetch(`/favorites/${userId}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data);
+                // console.log(data.data);
                 setFavorites(data.data);
             }) 
             .catch(error => {
@@ -35,22 +35,36 @@ const Favorites = () => {
             })
     }, [userId]);
 
-
     let justFavorites = favorites.favorites;
     console.log(justFavorites)
 
     return (
         <>
-        <h1>Your favorites</h1>
+  
         <Wrapper>
             {justFavorites !== undefined ? (
                 justFavorites.map((wine) => {
+                    const handleClick = (e) => {
+                        e.preventDefault();
+
+                        navigate(`/wines/${wine._id}`);
+                    }
+                    const handleClickProducer = (e) => {
+                        e.preventDefault();
+
+                        navigate(`/producers/${wine.producerId}`)
+                    }
                     return (
-                        <ul key ={wine._id}>
-                        <p>{wine.name}</p>
-                        <p>{wine.producer}</p>
-                        <p>$ {wine.price}</p>
-                        </ul>
+                        <Box key ={wine._id}>
+                        <TextBox>
+                        <Name onClick={handleClickProducer}>{wine.producer}</Name>
+                        <p>{wine.name}  ${wine.price}</p>
+                        </TextBox>
+                        <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
+                        <ButtonsBox>
+                        <Button onClick={handleClick}>View details</Button>
+                        </ButtonsBox>
+                        </Box>
                     )
                 })
             )
@@ -65,25 +79,73 @@ const Favorites = () => {
 };
 
 const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100vw;
-    gap: 30px;
-    margin-top: 80px;
-`
+column-count: 3;
+margin-top: 80px;
 
-const CheckoutSection = styled.div`
-    display: flex;
+display: grid;
+grid-template-columns: 30vw 30vw 30vw;
+margin-left: 5vw;
 `
+const TextBox = styled.span`
+    text-align: center;
+    display: inline;
+`;
 
-const PageTitle = styled.h1`
-    display: flex;
-    margin: auto;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 15px;
-`
+const Producer = styled.p`
+`;
+
+const Name = styled.button`
+text-decoration: none;
+padding-top: 15px;
+font-weight: bold;
+font-size: 16px;
+border: none;
+background-color: transparent;
+
+&:hover {
+    color: #474C8C;
+}
+`;
+
+const Box = styled.div`
+display: grid;
+grid-template-columns: 30vw 30vw 30vw;
+margin: 10px;
+border: 1px solid black;
+position: relative;
+height: 500px;
+`;
+
+const Image = styled.img`
+width: 200px;
+height: auto;
+align-items: center;
+position: absolute;
+bottom: 0;
+left: 0;
+`;
+
+const Button = styled.button`
+text-decoration: none;
+border: none;
+padding: 10px;
+
+height: 40px;
+cursor: pointer;
+
+&:hover {
+    background-color: #ABAEE9;
+}
+
+`;
+
+const ButtonsBox = styled.div`
+position: absolute;
+left: 170px;
+top: 84px;
+display: flex-wrap;
+
+`;
 
 const Container = styled.div`
     display: flex;

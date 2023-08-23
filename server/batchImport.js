@@ -29,5 +29,5 @@ const batchImportProducers = async () => {
 }
 
 
-// batchImportWines();
+batchImportWines();
 batchImportProducers();

@@ -9,15 +9,15 @@ import { UserContextProvider } from './context/UserContext';
 import { Auth0ContextProvider } from './context/Auth0Context';
 
 
-
-//MOVE DOMAIN ETC TO A DOTENV
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <FavoritesContextProvider>
       <Auth0Provider
-        domain="dev-8iu7l4puxtie1wb0.us.auth0.com"
-        clientId="b5B1rFjTV5vStO9oqw7nxauSUkbslCiv"
+        domain={process.env.REACT_APP_AUTH0_DOMAIN}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+
         authorizationParams={{
           redirect_uri: window.location.origin
         }}

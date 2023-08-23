@@ -1,36 +1,38 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 const Regions = () => {
-    const [allWines, setAllWines] = useState("");
+    const [wines, setWines] = useState([]);
+    const params = useParams();
+    const region = params.region;
     
     let navigate = useNavigate();
 
     useEffect(() => {
-        fetch("/wines")
+        fetch(`/regions/${region}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data.data);
-                setAllWines(data.data);
+                setWines(data.data);
             })
             .catch(error => {
                 console.log("error")
             })
     }, []);
 
+    console.log(wines);
+    
     return (
+
 
         <>
         <h1>Browse by regions </h1>
         <Wrapper>
-            {allWines.length > 0 ? (
-                allWines.map((wine) => {
-                    // const handleClick = (e) => {
-                    //     e.preventDefault();
-
-                    //     navigate(`/regions/${region}`);
-                    // }
+            {wines !== undefined ? (
+                wines.map((wine) => {
+               
                     return (
                         <ul key ={wine._id}>{wine.region}</ul>
                     )

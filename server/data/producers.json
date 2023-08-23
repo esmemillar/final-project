@@ -172,5 +172,47 @@
       "bio": "Focusing on Sauvignon Blanc, Welschriesling and Chardonnay (known locally as Morillon), Werlitsch wines are very precise in their delivery on the palate. Often crisp, clean and highly expressive, Werlitsch is totally committed to their chemical-free & holistic principles and respecting the land. Werlitsch sits alongside fellow respected producers working under the name ‘Schmecke das Leben’ (‘taste the life’), which is a band of five chemical-free & holistic producers committed to low-intervention work in the cellar and vineyard, and they work together to offer advice and support when needed to all achieve the best they can each achieve - and the results show! The other members of Schmeke das Leben are all, in our opinion, absolutely fantastic. They are Tscheppe, Strohmeier, Sepp & Maria Muster and Tauss.The Ex Vero range are specific Opok soil (mixture of clay & silt) plots numbered in relation to how high the harvest is taken. Ex Vero I are taken from the lower slopes, Ex Vero II the middle and Ex Vero III the highest part of the slope, where the vines are known to struggle a little more due to the rockier texture. Werlitsch also makes more skin-contact focused wines like the orange wines Glück & Freude, which are released in Clay bottles. The main difference between the two are that Freude is macerated as whole bunches, whilst Glück is detemmed before maceration.",
       "producer": "Werlitsch",
       "region": "Styrie"
-  }
+  }, 
+  {
+    "name": "", 
+    "_id": 836, 
+    "bio": "", 
+    "producer": "La Furtiva", 
+    "region": "Catalonia"
+  }, 
+  {
+    "name": "", 
+    "_id": 837, 
+    "bio": "", 
+    "producer": "Milan Nestarec", 
+    "region": "Moravia"
+  }, 
+  {
+    "name": "Marie & Vincent Tricot",
+    "_id": 838,
+    "bio": "", 
+    "producer": "Marie & Vincent Tricot",
+    "region": "Auvergne"
+  }, 
+  { 
+    "name": "", 
+    "_id": 839, 
+    "bio": "",
+    "producer": "Benoit Delorme",
+    "region": "Bourgogne"
+}, 
+{
+  "name": "Salima & Alain", 
+  "_id": 840, 
+  "bio": "", 
+  "producer": "Salima & Alain Cordeuil",
+  "region": "Champagne"
+}, 
+{ 
+  "name": "Alice & Quentin Beaufort", 
+  "_id": 841, 
+  "bio": "Alice and Quentin founded their domaine in 2007. it all started when Alice and Quentin Beaufort took over a vineyard at Prusly sur Ource, in Cote d'Or, in Bourgogne. The terroir there, only a few miles from Champagne, is particularly suited for Pinot Noir and the climatic conditions of Prusly recall those of Polisy, a little village in Champagne-Ardenne, in the north east of France. the main concern of the domaine is both to rediscover the aura of taste, moving up the idea of the industrial product, and to nourish the land with sincere passion respecting the course of nature and painting wines that taste of sea. ",
+  "producer": "Alice & Quentin Beaufort",
+  "region": "Bourgogne"
+}
 ]

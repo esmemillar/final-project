@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-const { getAllWines, getWine, getAllProducers, getProducer } = require('./getHandlers');
+const { getAllWines, getWine, getAllProducers, getProducer, getRegion } = require('./getHandlers');
 const { getFavorites, updateFavorites } = require('./favoritesHandlers')
 const { createUser, login, getUser } = require('./userHandlers');
 
@@ -13,8 +13,9 @@ router.get('/wines',  getAllWines);
 router.get('/wines/:wineId', getWine);
 router.get('/producers', getAllProducers);
 router.get('/producers/:producerId', getProducer);
+router.get('/regions/:region', getRegion);
 // router.get('/search/:searchedName', getByName);
-// router.get("/users", getUsers);
+// router.get("/users", getUsers);s
 router.post("/user", getUser);
 
 router.get("/favorites/:userId", getFavorites);

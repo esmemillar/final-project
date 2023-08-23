@@ -101,7 +101,7 @@ const getUser = async (req, res) => {
         const db = await client.db('finalproj');
 
         const data = await db.collection('users').findOne({ email: email });
-        console.log( "console from getUsers " + data);
+        // console.log( "console from getUsers " + data);
 
 
         if (data === null){

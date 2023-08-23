@@ -36,28 +36,27 @@ const SearchBar = ({ wines, handleSelect }) => {
         }}
          />
         <Button onClick={() => setValue('')}>Clear</Button>
-        {/* </Wrapper> */}
+
 
         <List>
-        <ul>
-            {wine.filter(wineFiltered => (value.length >= 2) && ((wineFiltered.name.toLowerCase().includes(value.toLowerCase())) || (wineFiltered.notes.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.producer.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.grapes.toLowerCase().includes(value.toLowerCase())))))).map(wineFiltered => (
+        {/* <ul> */}
+            {wine.filter(wineFiltered => (value.length >= 2) && ((wineFiltered.name.toLowerCase().includes(value.toLowerCase())) || (wineFiltered.notes.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.category.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.producer.toLowerCase().includes(value.toLowerCase()) || (wineFiltered.grapes.toLowerCase().includes(value.toLowerCase()))))))).map(wineFiltered => (
                     <ListItems 
                     key={wineFiltered._id}
                     onClick={() => handleSelect(wineFiltered._id)}>
-                            <span>
-                                {wineFiltered.name.slice(0, value.length)} 
-                                <Prediction>{wineFiltered.name.slice(value.length)} </Prediction>
-                                  {wineFiltered.year} - {wineFiltered.grapes}
-                            </span>
+                            {/* <span> */}
+                                <Prediction>{wineFiltered.name.slice(0, value.length)}</Prediction>
+                                {wineFiltered.name.slice(value.length)}  {wineFiltered.year} - {wineFiltered.grapes}
+                            {/* </span> */}
                     </ListItems>
         ))}
-        </ul>
+        {/* </ul> */}
         </List>
         </Wrapper>
         </>
     );
 } else {
-    return <p>hold on... loading....</p>
+    return <p>loading...............</p>
 }
 };
 
@@ -70,7 +69,7 @@ const Wrapper = styled.div`
 const Input = styled.input`
     width: 300px;
     height: 50px;
-    border-radius: 5px;
+    border: 1px solid black;
     margin: 25px;
 
 `;
@@ -79,12 +78,13 @@ const Button = styled.button`
 text-decoration: none;
 border: none;
 padding: 10px;
+width: 80px;
 margin-top: 30px;
 height: 40px;
-font-weight: bold;
 
-border-radius: 10px;
-background-color: pink;
+
+cursor: pointer;
+
 
 &:active {
     color: #F61BF3;
@@ -101,16 +101,15 @@ const List = styled.div`
     margin-top: 70px;
     margin-right: 30vw;
     margin-left: 30vw;
-    float: left;
 `;
 
 const ListItems = styled.div`
     padding: 10px;
+    padding-left: 2px;
     width: 500px;
-    border-radius: 10px;
 
     &:hover {
-        background: pink;
+        background: #F5F5F5;
     }
 `;
 

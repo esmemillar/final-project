@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
-import { FavoritesContext } from "./context/FavoritesContext";
+// import { FavoritesContext } from "./context/FavoritesContext";
 import { UserContext } from "./context/UserContext";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
@@ -14,43 +14,44 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Header = () => {
-    const [count, setCount] = useState(0);
-    const {state} = useContext(FavoritesContext);
+    // const [count, setCount] = useState(0);
+    // const {state} = useContext(FavoritesContext);
     const {userId} = useContext(UserContext);
 
     const { isAuthenticated } = useAuth0();
+    // console.log(userId);
 
-    // let currentUser = window.localStorage.getItem("userId");
-    // console.log(currentUser);
-    // console.log(currentUser.favorites);
+    let currentUser = window.localStorage.getItem("userId");
+    
+    // if (isAuthenticated === true) {
+    //     let count = (JSON.parse(currentUser).favorites).length;
+    // } else {
+    //     let count = undefined
+    // }
+    // const count = (JSON.parse(currentUser).favorites).length;
+    console.log((JSON.parse(currentUser).favorites).length);
 
     // let userId = (JSON.parse(localStorage.getItem("userId"))._id);
     // console.log(userId);
     return (
-        <div>
+        <Banner>
             <Wrapper>
-                <NavbarLink to={"/"}> Home</NavbarLink>
+                <NavbarLink to={"/"}> HOME</NavbarLink>
                 
-                <Dropdown>View all
-                    <DropdownLink to={"/wines"}>Wines</DropdownLink>
-                    <DropdownLink to={"/producers"}>Producers</DropdownLink>
+                <Dropdown>VIEW ALL
+                    <DropdownLink to={"/wines"}>WINES</DropdownLink>
+                    <DropdownLink to={"/producers"}>PRODUCERS</DropdownLink>
 
                 </Dropdown>
-                {/* {
-                state !== undefined ? 
-                <NavbarLink to={"/favorites"}> My favorites ( {state.length} ) </NavbarLink>
-                : <NavbarLink to={"/favorites"}> My favorites ( {count} ) </NavbarLink>
-            } */}
-                {/* <NavbarLink to={"/favorites"}> My Sips ( {count} )</NavbarLink>
-                <NavbarLink to={"/profile"}>Profile </NavbarLink> */}
 
-                <Dropdown>Browse by
+                {/* <Dropdown>Browse by
                     <DropdownLink to={"/grapes"}>Grape</DropdownLink>
                     <DropdownLink to={"/colour"}>Colour</DropdownLink>
                     <DropdownLink to={"/regions"}>Place</DropdownLink>
                     <DropdownLink to={"/year"}>Year</DropdownLink>
 
-                </Dropdown>
+                </Dropdown> */}
+                <> {isAuthenticated === false ? <></> :  <NavbarLink to={`/favorites/${userId}`}> MY FAVORITES </NavbarLink> }</>
                 {/* <RightNavbarLink to={"/signup"}> Login </RightNavbarLink> */}
                 {/* {
                 state !== undefined ? 
@@ -59,18 +60,23 @@ const Header = () => {
             } */}
             
             </Wrapper>
-            <WrapperRight>
-
-            <> {isAuthenticated === false ? <LoginButton/>: <LogoutButton/> }</>
-            
-            <NavbarLink to={`/favorites/${userId}`}> My favorites </NavbarLink>
+            <WrapperRight>  
+            {/* <> {isAuthenticated === false ? <></> :  <NavbarLink to={`/favorites/${userId}`}> My favorites </NavbarLink> }</>           */}
+            {/* <NavbarLink to={`/favorites/${userId}`}> My favorites </NavbarLink> */}
             {/* <NavbarLink to={"/signup"}> Login </NavbarLink> */}
+            <> {isAuthenticated === false ? <LoginButton/>:  <LogoutButton/> }</>
             </WrapperRight>
-        </div>
+        </Banner>
 
     );
 };
 
+const Banner = styled.div`
+    display: flex;
+    width: 100vw;
+    height: 80px;
+    // background-color: #747694;
+`;
 
 const Wrapper = styled.nav`
     width: 500px;
@@ -84,6 +90,9 @@ const WrapperRight = styled.nav`
     display: flex;
     float: right;
     resize: vertical;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 `;
 
 const NavbarLink = styled(NavLink)`
@@ -93,11 +102,12 @@ const NavbarLink = styled(NavLink)`
     color: #082A63;
 
     &:active {
-        color: #3C73CF;
+        color: #474C8C;
+        text-decoration: underline;
     }
 
     &:hover {
-        color: #3C73CF;
+        color: #474C8C;
     }
 `;
 
@@ -119,11 +129,11 @@ justify-content: center;
 
 
 &:active {
-    color: #3C73CF;
+    color: #474C8C;
 }
 
 &:hover {
-    color: #3C73CF;
+    color: #474C8C;
 }
 
 &:hover ${DropdownLink} {
@@ -134,7 +144,7 @@ justify-content: center;
     cursor: pointer;
 
     &:hover {
-        color: #3C73CF;
+        color: #474C8C;
     }
 }
 

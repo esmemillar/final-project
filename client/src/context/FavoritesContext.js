@@ -45,23 +45,6 @@ export const FavoritesContextProvider = ({children}) => {
         });
     };
 
-    // const addToFavorites = useEffect(() => {
-    //         state.length > 1 === true && fetch('/favorites', {
-    //             method: 'PATCH', 
-    //             headers: {
-    //                 "Accept": "application/json",
-    //                 "Content-Type": "application/json"
-    //             }, 
-    //             body: JSON.stringify({ favorites: favorites})
-    //         })
-    //             .then(res => res.json())
-    //             .then((data) => {
-    //                 setFavorites(data.data);
-    //                 console.log(data.data);
-    //             })
-    
-    //     }, [])
-
 
     const deleteFromFavorites = (data) => {
         dispatch({

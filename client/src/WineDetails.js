@@ -52,20 +52,29 @@ const WineDetails = () => {
         <Wrapper>
             {wine.length !== 0 ? (
                 <>
-                <h1>Wine details</h1>
+                <Title>DETAILS</Title>
                 <Wrapper>
-                    <h3>{wine.name}</h3>
+                <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
+                <Image2 src={require (`${wine.imageSrc}`)} alt={wine._id} />
+                <Container>
+                    <h3>{wine.name}</h3> 
+                    <Button onClick={handleClick}>{wine.producer}</Button> 
+                    <> 
+                    {user === undefined ? <></> :  <Button onClick={() => addToFavorites(wine)}>Add to favorites!</Button> }
+                    </>
+            
                     <p> $ {wine.price}</p>
-                    <p><Bold>{wine.grapes}</Bold> from <Italic>{wine.region}</Italic></p>
+                    <p><Bold>{wine.grapes}</Bold> from {wine.region}</p>
                     <p>{wine.category}</p>
                     
-                    <Container>
+                    
                     <p>{wine.notes}</p>
                     <p>{wine.method}</p>
+                    
                     </Container>
-                    <Button onClick={handleClick}>{wine.producer}</Button>
-                    <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
-                    <Button onClick={() => addToFavorites(wine)}>Add to favorites!</Button>
+                    {/* <Button onClick={handleClick}>{wine.producer}</Button> */}
+
+                    {/* <Button onClick={() => addToFavorites(wine)}>Add to favorites!</Button> */}
                 </Wrapper>
                 </>
             )
@@ -79,32 +88,57 @@ const WineDetails = () => {
 
 
 const Wrapper = styled.div`
-    margin: 80px;
+
 `;
 const Image = styled.img`
     width: 200px;
     height: auto;
+    margin: auto;
+    position: absolute;
+`;
+
+const Image2 = styled.img`
+    width: 200px;
+    height: auto;
+    margin: auto;
+    position: absolute;
+    right: 0;
+`;
+
+const Title = styled.h3`
+position: absolute;
+top: 9px;
+left: 340px;
+margin: 0;
+color: #082A63;
+font-size: 16px;
+text-decoration: underline;
 `;
 
 const Button = styled.button`
     cursor: pointer;
     margin: 15px;
-    background-color: pink;
     padding: 10px;
     border: none;
+
+&:hover {
+    background-color: #ABAEE9;
+}
 `;
 
 const Bold = styled.span`
     font-weight: bold;
 `;
 
-const Italic = styled.span`
-    font-style: italic;
+const Container = styled.div`
+width: 50vw;
+text-align: justify;
+text-justify: inter-word;
+border: 1px solid grey;
+padding: 10px;
+margin: auto;
+background-color: #F5F5F5;
+text-align: center;
 `;
 
-const Container = styled.div`
-    width: 60vw;
-    text-align: justify;
-    text-justify: inter-word;
-`;
 export default WineDetails;
