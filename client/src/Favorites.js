@@ -3,6 +3,8 @@ import { FavoritesContext } from "./context/FavoritesContext";
 import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 // TO DO: ADD TEXT INPUT "NOTES" ALLOW USERS TO LEAVE THEIR OWN NOTES AND OPINIONS ON THEIR SAVED WINES PUSH TO MONGO THE SAME WAY AS FAVORITES UPDATES REQ.BODY.NOTES? 
 // FRONT END - HAVE A BUTTON THAT REVEALS THE INPUT BOX ONCLICK, AND ANOTHER TO REVEAL ALREADY EXISTING NOTES - ONLY VISIBLE TO THE USER WHO LEFT THE NOTES.
@@ -12,11 +14,15 @@ const Favorites = () => {
     const navigate = useNavigate();
     const params = useParams();
     const userId = params.userId;
+    const { user } = useAuth0();
 
     let currentUser = window.localStorage.getItem("userId");
    
 
     const [favorites, setFavorites] = useState([])
+
+    const [userNote, setUserNote] = useState("")
+
 
   
 
@@ -32,6 +38,62 @@ const Favorites = () => {
                 console.log(error)
             })
     }, [userId]);
+
+    const addNote = ( userNote, favoriteId ) => {
+        // debugger
+            fetch('/favorites/notes', {
+                method: 'PATCH', 
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify({ addNote: userNote, _id: JSON.parse(localStorage.getItem("userId"))._id, user: user, favoriteId })
+            })
+            .then(res => res.json())
+            .then((data) => {
+                setUserNote(data.data);
+                // console.log(data.data);
+            })
+    }
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     const verifyNote = () => {
+            
+    //         if (userNote.length < 1){
+    //             console.log("no note")
+    //         } else {
+    //             console.log("all good!")
+    //         }
+    //     };
+        
+    //     try {
+
+    //         await verifyNote();
+
+    //         const res = await fetch('/favorites/notes', {
+    //             method: 'PATCH',
+    //             headers: {
+    //                 "Accept": "application/json",
+    //                 "Content-Type": "application/json"
+    //             },
+    //             body: JSON.stringify(userNote)
+    //         })
+
+    //         const data = await res.json()
+    //     } catch (err) {
+    //         console.log("error!")
+    //     }
+    // };
+
+    const handleChange = (e) => {
+        const key = e.target.name;
+        const value = e.target.value;
+
+        setUserNote(value)
+    
+    };
 
     let justFavorites = favorites.favorites;
     console.log(justFavorites)
@@ -61,6 +123,19 @@ const Favorites = () => {
                         <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
                         <ButtonsBox>
                         <Button onClick={handleClick}>View details</Button>
+                        <NotesBox>
+                        {/* onSubmit={(e) => handleSubmit(e)} */}
+                    
+                        <Input 
+                            type="text" 
+                            placeholder="note"
+                            name={"note"}
+                            required={false}
+                            onChange={handleChange} 
+                        />
+                        {/* <Submit type="submit" disabled={false}>Submit note</Submit> */}
+                        <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
+                        </NotesBox>
                         </ButtonsBox>
                         </Box>
                     )
@@ -88,6 +163,8 @@ const TextBox = styled.span`
     text-align: center;
     display: inline;
 `;
+
+const Input = styled.input``;
 
 const Producer = styled.p`
 `;
@@ -137,6 +214,9 @@ cursor: pointer;
 
 `;
 
+const NotesBox = styled.form`
+`;
+
 const ButtonsBox = styled.div`
 position: absolute;
 left: 170px;
@@ -145,91 +225,8 @@ display: flex-wrap;
 
 `;
 
-const Container = styled.div`
-    display: flex;
-    border: 1px solid black;
-    max-width: 80vw;
-    width: 70vw;
-    flex-direction: column;
-    padding: 10px;
-`;
+const Submit = styled.button`
 
-const Empty = styled.p`
-`;
-
-const ItemContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: auto;
-    gap: 5px;
-    padding: 30px 10px;
-`;
-
-const ItemInfo = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`;
-
-const ItemImage = styled.img`
-    width: 150px;
-`;
-
-const ItemName = styled.h3`
-    margin-bottom: 5px;
-    margin-top: 0;
-`;
-
-const ItemPrice = styled.p`
-    font-size: 1.3em;
-    font-weight: bold;
-    margin: 15px 0;
-`;
-
-
-const ItemButtons = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 150px;
-`;
-
-const DeleteButton = styled.button`
-cursor: pointer;
-margin: 15px;
-background-color: pink;
-padding: 10px;
-border: none;
-`;
-
-const SaveButton = styled.button`
-    cursor: pointer;
-    margin: 15px;
-    background-color: pink;
-    padding: 10px;
-    border: none;
-`;
-
-const ClearCartButton = styled.button`
-    cursor: pointer;
-    margin: 15px;
-    background-color: pink;
-    padding: 10px;
-    border: none;
-`;
-
-
-const TotalAmount = styled.h4`
-    font-size: 1.2em;
-    margin: 20px 10px;
-`;
-
-const CheckoutButton = styled.button`
-    background-color: lightblue;
-    font-weight: bold;
-    cursor: pointer;
-`;
+`
 
 export default Favorites;

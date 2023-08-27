@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Wines = () => {
     const { user } = useAuth0();
     const [allWines, setAllWines] = useState("");
-    const { AddToFavorites, favorites, setFavorites, userId } = useContext(UserContext);
+    const { setFavorites, userId } = useContext(UserContext);
     // const {state, addToFavorites } = useContext(FavoritesContext);
 
     // console.log(favorites);

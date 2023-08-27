@@ -72,6 +72,33 @@ const updateFavorites = async (req, res) => {
         }
 }
 
+const addNote = async (req, res) => {
+    const client = new MongoClient(MONGO_URI, options);
+    const db = await client.db('finalproj');
+    console.log("connected");
+
+    const _id = req.body._id;
+    const favoriteId = req.body.favoriteId;
+    console.log(_id);
+    const user = req.body.user;
+    console.log("log from addNote line 82 favoritesHandlers.js" + req.body.favoriteId, req.body.user);
+    // console.log(user);
+
+    await client.connect();
+
+    const User = await db.collection("users")
+    // try {
+        const noteAdded = await User.updateOne(
+            { _id: _id, "favorites._id": favoriteId },
+            { $set: { "favorites.$.userNotes": req.body.addNote } })
+    // }
+    // catch {
+        if (noteAdded) { 
+            res.status(200).json({ status: 200, message: "Your notes have been updated!", data: noteAdded})
+        } else {
+            res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
+        }
+}
 
 // TO DO : ADD HANDLER FOR SUBMITTING NOTES AND RETURNING NOTES - 
 
@@ -117,6 +144,7 @@ const updateFavorites = async (req, res) => {
 
 module.exports = {
     getFavorites,
-    updateFavorites
+    updateFavorites, 
+    addNote
     // removeFavorite
 }

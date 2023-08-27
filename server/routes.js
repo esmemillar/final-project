@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 
 const { getAllWines, getWine, getAllProducers, getProducer, getRegion } = require('./getHandlers');
-const { getFavorites, updateFavorites } = require('./favoritesHandlers')
+const { getFavorites, updateFavorites, addNote } = require('./favoritesHandlers')
 const { createUser, login, getUser } = require('./userHandlers');
 
 router.get('/hello', (req, res) => {
@@ -21,6 +21,7 @@ router.post("/user", getUser);
 router.get("/favorites/:userId", getFavorites);
 // router.post("/favorites", addFavorites);
 router.patch("/favorites", updateFavorites);
+router.patch("/favorites/notes", addNote)
 
 // router.post("/signup/create", createUser);
 // router.post("/login", login);
