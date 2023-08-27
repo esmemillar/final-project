@@ -5,27 +5,21 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
-
-// TO DO: ADD TEXT INPUT "NOTES" ALLOW USERS TO LEAVE THEIR OWN NOTES AND OPINIONS ON THEIR SAVED WINES PUSH TO MONGO THE SAME WAY AS FAVORITES UPDATES REQ.BODY.NOTES? 
-// FRONT END - HAVE A BUTTON THAT REVEALS THE INPUT BOX ONCLICK, AND ANOTHER TO REVEAL ALREADY EXISTING NOTES - ONLY VISIBLE TO THE USER WHO LEFT THE NOTES.
 const Favorites = () => {
-   
-    
+
+
     const navigate = useNavigate();
     const params = useParams();
     const userId = params.userId;
     const { user } = useAuth0();
 
     let currentUser = window.localStorage.getItem("userId");
-   
+
 
     const [favorites, setFavorites] = useState([])
 
     const [userNote, setUserNote] = useState("")
-
-
-  
-
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         fetch(`/favorites/${userId}`)
@@ -33,22 +27,22 @@ const Favorites = () => {
             .then((data) => {
                 // console.log(data.data);
                 setFavorites(data.data);
-            }) 
+            })
             .catch(error => {
                 console.log(error)
             })
     }, [userId]);
 
-    const addNote = ( userNote, favoriteId ) => {
+    const addNote = (userNote, favoriteId) => {
         // debugger
-            fetch('/favorites/notes', {
-                method: 'PATCH', 
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                }, 
-                body: JSON.stringify({ addNote: userNote, _id: JSON.parse(localStorage.getItem("userId"))._id, user: user, favoriteId })
-            })
+        fetch('/favorites/notes', {
+            method: 'PATCH',
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ addNote: userNote, _id: JSON.parse(localStorage.getItem("userId"))._id, user: user, favoriteId })
+        })
             .then(res => res.json())
             .then((data) => {
                 setUserNote(data.data);
@@ -56,43 +50,17 @@ const Favorites = () => {
             })
     }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     const verifyNote = () => {
-            
-    //         if (userNote.length < 1){
-    //             console.log("no note")
-    //         } else {
-    //             console.log("all good!")
-    //         }
-    //     };
-        
-    //     try {
-
-    //         await verifyNote();
-
-    //         const res = await fetch('/favorites/notes', {
-    //             method: 'PATCH',
-    //             headers: {
-    //                 "Accept": "application/json",
-    //                 "Content-Type": "application/json"
-    //             },
-    //             body: JSON.stringify(userNote)
-    //         })
-
-    //         const data = await res.json()
-    //     } catch (err) {
-    //         console.log("error!")
-    //     }
-    // };
 
     const handleChange = (e) => {
         const key = e.target.name;
         const value = e.target.value;
 
         setUserNote(value)
-    
+
+    };
+
+    const showNotesBox = () => {
+        setVisible(current => !current);
     };
 
     let justFavorites = favorites.favorites;
@@ -100,53 +68,54 @@ const Favorites = () => {
 
     return (
         <>
-  
-        <Wrapper>
-            {justFavorites !== undefined ? (
-                justFavorites.map((wine) => {
-                    const handleClick = (e) => {
-                        e.preventDefault();
 
-                        navigate(`/wines/${wine._id}`);
-                    }
-                    const handleClickProducer = (e) => {
-                        e.preventDefault();
+            <Wrapper>
+                {justFavorites !== undefined ? (
+                    justFavorites.map((wine) => {
+                        const handleClick = (e) => {
+                            e.preventDefault();
 
-                        navigate(`/producers/${wine.producerId}`)
-                    }
-                    return (
-                        <Box key ={wine._id}>
-                        <TextBox>
-                        <Name onClick={handleClickProducer}>{wine.producer}</Name>
-                        <p>{wine.name}  ${wine.price}</p>
-                        </TextBox>
-                        <Image src={require (`${wine.imageSrc}`)} alt={wine._id} />
-                        <ButtonsBox>
-                        <Button onClick={handleClick}>View details</Button>
-                        <NotesBox>
-                        {/* onSubmit={(e) => handleSubmit(e)} */}
-                    
-                        <Input 
-                            type="text" 
-                            placeholder="note"
-                            name={"note"}
-                            required={false}
-                            onChange={handleChange} 
-                        />
-                        {/* <Submit type="submit" disabled={false}>Submit note</Submit> */}
-                        <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
-                        </NotesBox>
-                        </ButtonsBox>
-                        </Box>
-                    )
-                })
-            )
-            : (
-                <Wrapper>loading.....</Wrapper>
-            )}
-        </Wrapper>
+                            navigate(`/wines/${wine._id}`);
+                        }
+                        const handleClickProducer = (e) => {
+                            e.preventDefault();
+
+                            navigate(`/producers/${wine.producerId}`)
+                        }
+                        return (
+                            <Box key={wine._id}>
+                                <TextBox>
+                                    <Name onClick={handleClickProducer}>{wine.producer}</Name>
+                                    <p>{wine.name}  ${wine.price}</p>
+                                </TextBox>
+                                <Image src={require(`${wine.imageSrc}`)} alt={wine._id} />
+                                <ButtonsBox>
+                                    <Button onClick={handleClick}>View details</Button>
+                                    <Button onClick={showNotesBox}>Leave a note</Button>
+                                    {visible && (
+                                        <NotesBox>
+                                            <Input
+                                                type="text"
+                                                placeholder=""
+                                                name={"note"}
+                                                required={false}
+                                                onChange={handleChange}
+                                            />
+                                            <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
+                                        </NotesBox>
+                                    )}
+
+                                </ButtonsBox>
+                            </Box>
+                        )
+                    })
+                )
+                    : (
+                        <Wrapper>loading.....</Wrapper>
+                    )}
+            </Wrapper>
         </>
- 
+
     )
 
 };
@@ -164,7 +133,6 @@ const TextBox = styled.span`
     display: inline;
 `;
 
-const Input = styled.input``;
 
 const Producer = styled.p`
 `;
@@ -215,17 +183,36 @@ cursor: pointer;
 `;
 
 const NotesBox = styled.form`
+
+`;
+
+const Input = styled.input`
+    border: none;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    background: pink;
 `;
 
 const ButtonsBox = styled.div`
 position: absolute;
-left: 170px;
+left: 115px;
 top: 84px;
 display: flex-wrap;
 
 `;
 
 const Submit = styled.button`
+text-decoration: none;
+border: none;
+padding: 10px;
+
+height: 40px;
+cursor: pointer;
+
+&:hover {
+    background-color: #ABAEE9;
+}
 
 `
 
