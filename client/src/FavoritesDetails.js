@@ -79,7 +79,7 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
     return (
         <>
 
-            <Wrapper>
+            <>
                 {justFavorites !== undefined ? (
                     justFavorites.map((wine) => {
                         const handleClick = (e) => {
@@ -103,6 +103,7 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
                                     <Button onClick={handleClick}>View details</Button>
                                     <Button id={wine._id} onClick={showNotesBox}>Leave a note</Button>
                                     {visible && visibilityId === `${wine._id}` && (
+                                        <NotesContainer>
                                         <NotesBox>
                                             <Input
                                                 type="text"
@@ -113,6 +114,7 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
                                             />
                                             <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
                                         </NotesBox>
+                                        </NotesContainer>
                                     )}
                                     <Button id={wine._id} onClick={showUserNotes}>See notes</Button>
                                     {visible && seeNotesVisibilityId === `${wine._id}` && (
@@ -129,7 +131,7 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
                     : (
                         <Wrapper>loading.....</Wrapper>
                     )}
-            </Wrapper>
+            </>
         </>
 
     )
@@ -185,38 +187,61 @@ left: 0;
 `;
 
 const Button = styled.button`
-text-decoration: none;
 border: none;
+background-color: transparent;
+text-decoration: none;
 padding: 10px;
+font-weight: bold;
+color: #082A63;
 
-height: 40px;
-cursor: pointer;
+&:active {
+    color: #474C8C;
+    text-decoration: underline;
+}
 
 &:hover {
-    background-color: #ABAEE9;
+    color: #474C8C;
 }
 
 `;
 
 const NotesBox = styled.form`
-
 `;
 
 const UserNotes = styled.div`
+border: none;
+top: -150px;
+left: -110px;
+width: 400px;
+height: 100px;
+position: absolute;
+z-index: 40;
+background: #F5F5F5;
+text-align: center;
+padding-top: 20px;
+`;
 
+const NotesContainer = styled.div`
+width: 100vw;
+height: 100vw;
+top: 0;
+position: relative;
 `;
 
 const Input = styled.input`
     border: none;
-    width: 40px;
-    height: 40px;
+    top: -150px;
+    left: -110px;
+    width: 400px;
+    height: 100px;
     position: absolute;
-    background: pink;
+    z-index: 40;
+    background: #F5F5F5;
 `;
 
 const ButtonsBox = styled.div`
 position: absolute;
-left: 115px;
+left: 70px;
 top: 84px;
 display: flex-wrap;
 
@@ -226,13 +251,22 @@ const Submit = styled.button`
 text-decoration: none;
 border: none;
 padding: 10px;
-
+width: 200px;
+margin-top: 30px;
 height: 40px;
+
+
 cursor: pointer;
 
-&:hover {
-    background-color: #ABAEE9;
+
+&:active {
+    color: #F61BF3;
 }
+
+&:hover {
+    color: hot-pink;
+}
+
 
 `
 
