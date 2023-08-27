@@ -13,7 +13,7 @@ router.get('/wines',  getAllWines);
 router.get('/wines/:wineId', getWine);
 router.get('/producers', getAllProducers);
 router.get('/producers/:producerId', getProducer);
-router.get('/regions/:region', getRegion);
+// router.get('/regions/:region', getRegion);
 // router.get('/search/:searchedName', getByName);
 // router.get("/users", getUsers);s
 router.post("/user", getUser);

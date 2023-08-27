@@ -35,9 +35,9 @@ const App = () => {
                   <Route path="/wines/:wineId" element={<WineDetails/>} />
                   <Route path="/producers" element={<Producers />} />
                   <Route path="/producers/:producerId" element={<ProducerDetails/>} />
-                  <Route path="/grapes" element={<Grapes/>} />
-                  <Route path="/regions/:region" element={<Regions/>} />
-                  <Route path="/colour" element={<BrowseByStyle/>} />
+                  {/* <Route path="/grapes" element={<Grapes/>} /> */}
+                  {/* <Route path="/regions/:region" element={<Regions/>} /> */}
+                  {/* <Route path="/colour" element={<BrowseByStyle/>} /> */}
                   <Route path="/year" element={<BrowseByYear/>} />
                   <Route path="/favorites/:userId" element={<Favorites />} />
 

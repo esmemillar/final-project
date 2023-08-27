@@ -13,7 +13,6 @@ const options = {
     useUnifiedTopology: true
 };
 
-// TO DO : update to find SPECIFIC USER by ID and return array of associated favorites
 
 
 const getFavorites = async (req, res) => {
@@ -71,47 +70,10 @@ const updateFavorites = async (req, res) => {
         } else {
             res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
         }
-            // res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
-    
-    // }
-    // finally {
-            // res.status(200).json({ status: 200, message: "Your favorites have been updated!"})
-    // }
 }
 
-    // const db = await client.db('finalproj');
-    // console.log("connected");
 
-    // const _id = req.body._id
-    // const user = req.body.user
-    // console.log(req.body);
-
-    // const findUser = await db.collection("users").findOne({ _id })
-    // console.log(findUser);
-    // const updatedFavorite = await db.collection("users").updateOne({ $addToSet: {favorites: req.body.updatedFavorite} });
-
-
-    // const User = await db.collection("users")
-
-    // const favoriteAdded = await User.updateOne(
-    //     { _id: req.body._id },
-    //     { $addToSet: { favorites: req.body.updatedFavorite } })
-
-//         if (favoriteAdded !== undefined) {
-//             res.status(200).json({ status: 200, message: "Your favorites have been updated!", data: favoriteAdded})
-//         } else {
-//             res.status(500).json({ status: 500, message: "That didn't work!", data: "" });
-//         }
-// }
-
-    // } catch (err) {
-    //     console.log(err.stack);
-    //     res.status(500).json({ status: 500, message: "something went wrong" });
-    // } finally {
-    //     client.close();
-    //     console.log("disconnected!");
-    // }
-
+// TO DO : ADD HANDLER FOR SUBMITTING NOTES AND RETURNING NOTES - 
 
 
 

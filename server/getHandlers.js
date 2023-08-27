@@ -134,35 +134,35 @@ const getProducer = async (req, res) => {
     client.close();
 };
 
-const getByGrape = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
+// const getByGrape = async (req, res) => {
+//     const client = new MongoClient(MONGO_URI, options);
 
-    try {
-       await client.connect();
+//     try {
+//        await client.connect();
 
-        const db = await client.db('finalproj');
+//         const db = await client.db('finalproj');
 
-const data = await db.collection('wines').findOne({grapes: selectedGrape});
+// const data = await db.collection('wines').findOne({grapes: selectedGrape});
 
-        if (producers || wines === null){
-            throw new Error();
-        }
+//         if (producers || wines === null){
+//             throw new Error();
+//         }
 
-        res.status(200).json({
-            status: 200,
-            data: producers && wines,
-        });
+//         res.status(200).json({
+//             status: 200,
+//             data: producers && wines,
+//         });
 
-    } catch(err) {
-        console.log(err);
-        res.status(404).json({
-            status: 404,
-            message: 'Data not found' 
-        })
-    }
+//     } catch(err) {
+//         console.log(err);
+//         res.status(404).json({
+//             status: 404,
+//             message: 'Data not found' 
+//         })
+//     }
 
-    client.close();
-};
+//     client.close();
+// };
 
 const getUsers = async (req, res) => {
     const client = new MongoClient(MONGO_URI, options);
@@ -194,49 +194,18 @@ const getUsers = async (req, res) => {
 
 };
 
-const getRegion = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-    const region = (req.params.region);
-
-    console.log("from getHandlers: getRegion" + region);
-
-    try {
-       await client.connect();
-        
-        const db = await client.db('finalproj');
-
-        const data = await db.collection('wines').findOne({region: region});
-
-        if (data === null){
-            throw new Error();
-        }
-
-        res.status(200).json({
-            status: 200,
-            data: data
-        })
-
-    } catch (err) {
-        console.log(err);
-        res.status(404).json({
-            status: 404, 
-            message: 'Product not found'
-        });
-    }
-
-    client.close();
-};
-
-// const getUser = async (req, res) => {
+// const getRegion = async (req, res) => {
 //     const client = new MongoClient(MONGO_URI, options);
-//     const userId = Number(req.params.userId);
+//     const region = (req.params.region);
+
+//     console.log("from getHandlers: getRegion" + region);
 
 //     try {
-//         client.connect();
+//        await client.connect();
+        
+//         const db = await client.db('finalproj');
 
-//         const db = client.db('finalproj');
-
-//         const data = db.collection('users').findOne({_id: userId });
+//         const data = await db.collection('wines').findOne({region: region});
 
 //         if (data === null){
 //             throw new Error();
@@ -247,17 +216,18 @@ const getRegion = async (req, res) => {
 //             data: data
 //         })
 
-//     } catch(err) {
+//     } catch (err) {
 //         console.log(err);
 //         res.status(404).json({
-//             status: 404,
-//             message: 'user not found'
-//         })
+//             status: 404, 
+//             message: 'Product not found'
+//         });
 //     }
 
 //     client.close();
-
 // };
+
+
 
 
 
@@ -267,7 +237,7 @@ module.exports = {
     getWine,
     getAllProducers, 
     getProducer,
-    getByGrape, 
-    getUsers, 
-    getRegion
+    // getByGrape, 
+    getUsers 
+    // getRegion
  };

@@ -4,23 +4,21 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 
 
-// TO DO: SHOULD PUSH "FAVORITES" TO CURRENTUSER.FAVORITES ARRAY IN MONGODB DATABSE AND THEN RETURN CONTENTS OF THAT ARRAY 
+// TO DO: ADD TEXT INPUT "NOTES" ALLOW USERS TO LEAVE THEIR OWN NOTES AND OPINIONS ON THEIR SAVED WINES PUSH TO MONGO THE SAME WAY AS FAVORITES UPDATES REQ.BODY.NOTES? 
+// FRONT END - HAVE A BUTTON THAT REVEALS THE INPUT BOX ONCLICK, AND ANOTHER TO REVEAL ALREADY EXISTING NOTES - ONLY VISIBLE TO THE USER WHO LEFT THE NOTES.
 const Favorites = () => {
-    // const {state, addToFavorites, deleteFromFavorites} = useContext(FavoritesContext);
+   
     
     const navigate = useNavigate();
     const params = useParams();
     const userId = params.userId;
 
     let currentUser = window.localStorage.getItem("userId");
-    // console.log(currentUser);
-    // console.log(currentUser.favorites);
+   
 
     const [favorites, setFavorites] = useState([])
 
-    // const [favoritesId, setFavoritesId] = useState(null)
-
-    // const [favoritesUpdated, setFavoritesUpdated] = useState(false)
+  
 
 
     useEffect(() => {
