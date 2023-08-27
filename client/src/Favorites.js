@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FavoritesContext } from "./context/FavoritesContext";
 import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
+import FavoritesDetails from "./FavoritesDetails";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -19,9 +20,9 @@ const Favorites = () => {
     const [favorites, setFavorites] = useState([])
 
     const [userNote, setUserNote] = useState("")
-    const [visible, setVisible] = useState(false);
+    // const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
+    const fetchFavorites = () => {
         fetch(`/favorites/${userId}`)
             .then((res) => res.json())
             .then((data) => {
@@ -31,7 +32,7 @@ const Favorites = () => {
             .catch(error => {
                 console.log(error)
             })
-    }, [userId]);
+        }
 
     const addNote = (userNote, favoriteId) => {
         // debugger
@@ -59,18 +60,36 @@ const Favorites = () => {
 
     };
 
-    const showNotesBox = () => {
-        setVisible(current => !current);
-    };
+    // const showNotesBox = () => {
+    //     setVisible(current => !current);
+    // };
 
     let justFavorites = favorites.favorites;
     console.log(justFavorites)
 
     return (
         <>
+        <Wrapper> 
+        <FavoritesDetails fetchFavorites={fetchFavorites} favorites={favorites} setFavorites={setFavorites}/>
+         {/* <Button onClick={showNotesBox}>Leave a note</Button>
+                                    {visible && (
+                                        <NotesBox>
+                                            <Input
+                                                type="text"
+                                                placeholder=""
+                                                name={"note"}
+                                                required={false}
+                                                onChange={handleChange}
+                                            />
+                                            <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
+                                        </NotesBox>
+                                    )}  */}
+        </Wrapper>
 
-            <Wrapper>
-                {justFavorites !== undefined ? (
+            {/* <Wrapper> */}
+                
+                {/* <FavoritesDetails /> */}
+                {/* {justFavorites !== undefined ? (
                     justFavorites.map((wine) => {
                         const handleClick = (e) => {
                             e.preventDefault();
@@ -84,36 +103,43 @@ const Favorites = () => {
                         }
                         return (
                             <Box key={wine._id}>
-                                <TextBox>
-                                    <Name onClick={handleClickProducer}>{wine.producer}</Name>
-                                    <p>{wine.name}  ${wine.price}</p>
-                                </TextBox>
-                                <Image src={require(`${wine.imageSrc}`)} alt={wine._id} />
-                                <ButtonsBox>
-                                    <Button onClick={handleClick}>View details</Button>
-                                    <Button onClick={showNotesBox}>Leave a note</Button>
+                            <TextBox>
+                                <Name onClick={handleClickProducer}>{wine.producer}</Name>
+                                <p>{wine.name}  ${wine.price}</p>
+                            </TextBox>
+                            <Image src={require(`${wine.imageSrc}`)} alt={wine._id} />
+                            <ButtonsBox>
+                                <Button onClick={handleClick}>View details</Button>
+                                <Button onClick={showNotesBox}>Leave a note</Button>
+                                <Button onClick={showNotesBox}>See notes</Button>
+                                
+                                    <NotesBox>
+                                        <Input
+                                            type="text"
+                                            placeholder=""
+                                            name={"note"}
+                                            required={false}
+                                            onChange={handleChange}
+                                        />
+                                        <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
+                                    </NotesBox>
                                     {visible && (
-                                        <NotesBox>
-                                            <Input
-                                                type="text"
-                                                placeholder=""
-                                                name={"note"}
-                                                required={false}
-                                                onChange={handleChange}
-                                            />
-                                            <Submit onClick={() => addNote(userNote, wine._id)}>Submit note</Submit>
-                                        </NotesBox>
-                                    )}
+                                        <>{wine.userNotes}</>
+                                        // wine.map((notes) => {
+                                        //     <>{notes}</>
+                                        // }) 
+                                )}
 
-                                </ButtonsBox>
-                            </Box>
-                        )
+                            </ButtonsBox>
+                        </Box> */}
+                    
+                        {/* )
                     })
                 )
                     : (
                         <Wrapper>loading.....</Wrapper>
                     )}
-            </Wrapper>
+            </Wrapper> */}
         </>
 
     )
@@ -183,13 +209,10 @@ cursor: pointer;
 `;
 
 const NotesBox = styled.form`
-
 `;
 
 const Input = styled.input`
     border: none;
-    width: 400px;
-    height: 400px;
     position: absolute;
     background: pink;
 `;
