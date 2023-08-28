@@ -17,6 +17,7 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
 
     const [userNote, setUserNote] = useState("")
     const [visible, setVisible] = useState(false);
+    const [visibleNotes, setVisibleNotes] = useState(false);
     const [visibilityId, setVisibilityId] = useState("");
     const [seeNotesVisibilityId, setSeeNotesVisibilityId] = useState("");
 
@@ -62,14 +63,14 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
 
     const showNotesBox = (e) => {
         e.stopPropagation();
-        
+        setVisibleNotes(false);
         setVisible(current => !current);
         setVisibilityId(e.currentTarget.id);
     };
     const showUserNotes = (e) => {
         e.stopPropagation();
-        
-        setVisible(current => !current);
+        setVisible(false);
+        setVisibleNotes(current => !current);
         setSeeNotesVisibilityId(e.currentTarget.id);
     };
 
@@ -96,13 +97,18 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
                             <Box key={wine._id}>
                                 <TextBox>
                                     <Name onClick={handleClickProducer}>{wine.producer}</Name>
-                                    <p>{wine.name}  ${wine.price}</p>
+                                    <p>{wine.name}  $ {wine.price}</p>
                                 </TextBox>
                                 <Image src={require(`${wine.imageSrc}`)} alt={wine._id} />
                                 <ButtonsBox>
                                     <Button onClick={handleClick}>View details</Button>
+                                    <Button id={wine._id} onClick={showUserNotes}>See notes</Button>
+                                    {visibleNotes && seeNotesVisibilityId === `${wine._id}` && visible === false && (
+                                     <UserNotes>{wine.userNotes}</UserNotes>
+                                    )}
+                                {/* </ButtonsBox> */}
                                     <Button id={wine._id} onClick={showNotesBox}>Leave a note</Button>
-                                    {visible && visibilityId === `${wine._id}` && (
+                                    {visible && visibilityId === `${wine._id}` && visibleNotes === false && (
                                         <NotesContainer>
                                         <NotesBox>
                                             <Input
@@ -116,11 +122,10 @@ const Favorites = ({fetchFavorites, favorites, setFavorites}) => {
                                         </NotesBox>
                                         </NotesContainer>
                                     )}
-                                    <Button id={wine._id} onClick={showUserNotes}>See notes</Button>
-                                    {visible && seeNotesVisibilityId === `${wine._id}` && (
+                                    {/* <Button id={wine._id} onClick={showUserNotes}>See notes</Button>
+                                    {visibleNotes && seeNotesVisibilityId === `${wine._id}` && visible === false && (
                                      <UserNotes>{wine.userNotes}</UserNotes>
-                                    )}
-                                    
+                                    )} */}
                                 </ButtonsBox>
 
                                 
@@ -152,8 +157,6 @@ const TextBox = styled.span`
 `;
 
 
-const Producer = styled.p`
-`;
 
 const Name = styled.button`
 text-decoration: none;
@@ -206,12 +209,9 @@ color: #082A63;
 `;
 
 const NotesBox = styled.form`
-`;
-
-const UserNotes = styled.div`
 border: none;
-top: -150px;
-left: -110px;
+top: 130px;
+left: -65px;
 width: 400px;
 height: 100px;
 position: absolute;
@@ -219,24 +219,37 @@ z-index: 40;
 background: #F5F5F5;
 text-align: center;
 padding-top: 20px;
+border: 1px solid black;
+`;
+
+const UserNotes = styled.div`
+border: none;
+top: 80px;
+left: -65px;
+width: 400px;
+height: 150px;
+position: absolute;
+z-index: 40;
+background: #F5F5F5;
+text-align: center;
+padding-top: 20px;
+border: 1px solid black;
 `;
 
 const NotesContainer = styled.div`
-width: 100vw;
-height: 100vw;
-top: 0;
-position: relative;
+
 `;
 
 const Input = styled.input`
     border: none;
-    top: -150px;
-    left: -110px;
+    top: -49px;
+    left: -5px;
     width: 400px;
-    height: 100px;
+    height: 163px;
     position: absolute;
     z-index: 40;
     background: #F5F5F5;
+    border: 3px solid pink;
 `;
 
 const ButtonsBox = styled.div`
@@ -252,8 +265,11 @@ text-decoration: none;
 border: none;
 padding: 10px;
 width: 200px;
-margin-top: 30px;
 height: 40px;
+position: absolute; 
+top: 180px;
+left: 100px;
+border: 2px solid pink;
 
 
 cursor: pointer;
